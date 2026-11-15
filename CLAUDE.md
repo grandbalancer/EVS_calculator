@@ -82,7 +82,7 @@ planned: core/ app/ installer/
 | `konspekt2021` | `pdfcoffee.com_-69-3-pdf-free.pdf` | Anonymous lecture notes, not RPR-69. Secondary only; do not use its charge or mine chapters |
 | web | see `books.json` | ГОСТ 2190-77, ИР 3012165-0302-94, БГТУ battery textbook, Лукьянов «Взрывные работы», ПГУПС slide |
 
-Cite PDF sheets, never printed pages (except `rpr69s`/`rpr69p` locators). The mines handbook from the user's original README is not provided.
+Cite PDF sheets, never printed pages (except `rpr69s`/`rpr69p` locators). The mines handbook is not provided.
 
 Locations for tabs 2-3 (not yet specified): textbook charge tables 1.2-1.17 on sheets 51-109 (КЗ-6 is 1.9), chapters 4.1-4.3 from sheet 247, soils 5.1 sheet 286; Практикум 2.1-2.3, 3.1; RPR charges text sheets 20-28. Drafts exist in `data/draft/tables/vzd2019_t1_*.csv`, not in `data/builtin`.
 
