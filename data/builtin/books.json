@@ -1,0 +1,148 @@
+{
+  "format": "evs-catalog/1",
+  "category": "books",
+  "description": "Sources. PDF books have 'pdf_sheets' (citations use 'sheet'); web sources have 'url' and 'accessed' (citations use 'locator': table, clause, formula).",
+  "items": [
+    {
+      "id": "rpr69",
+      "name": "Руководство по подрывным работам (РПР-69)",
+      "file": "RPR-69.pdf",
+      "pdf_sheets": 403,
+      "sources": [{"book": "rpr69", "sheet": 1}],
+      "status": "checked",
+      "notes": [
+        "Scan with a poor OCR layer: read table digits from page images.",
+        "Empty sheets 23, 59, 99, 155, 315, 318, 366, 367 (tools/pdfq.py gaps).",
+        "Missing printed pages: 82-83 (end of art. 92 to art. 94, Table 13, title of the accumulator table) and 102-113 (end of art. 112, art. 113 mixed network, art. 114-123 incl. the 10-15 % wire margin cited by the Praktikum).",
+        "Partly retyped edition with retyping errors. Missing pages are covered by the original scan 'rpr69s'."
+      ]
+    },
+    {
+      "id": "rpr69s",
+      "name": "Руководство по подрывным работам (РПР-69), оригинальное издание 1969 г., скан",
+      "file": "sources/web/RPR-69_sappers_org.pdf",
+      "pdf_sheets": 233,
+      "url": "https://static.sappers.org/files/biblioteka/rukovodstvo-po-podryvnym-rabotam.pdf",
+      "page_url": "https://sappers.org/uk/biblioteka/rukovodstvo-po-podryvnym-rabotam",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "rpr69s", "sheet": 1}],
+      "status": "checked",
+      "notes": [
+        "Library of sappers.org (online reference on engineering and mine safety). 16,8 MB, image-only (tiff2pdf, 2023), no text layer.",
+        "Two printed pages per PDF sheet: cite 'sheet' plus 'locator' (left/right half, printed page). Rendered halves: tmp/pages/rpr69s_sheet<N>_<L|R>.png.",
+        "Contains the pages missing in RPR-69.pdf (59-60, 82-83, 102-113). Printed pages 84-85 are missing here; they are covered by the user's photos ('rpr69p').",
+        "RPR-69.pdf is a partly retyped edition; where they differ, this original wins (Table 11 designations, Table 6 'ЛТВ')."
+      ]
+    },
+    {
+      "id": "rpr69p",
+      "name": "РПР-69, фото печатных страниц 84-85 (присланы пользователем 2026-11-15)",
+      "photos": ["sources/photos/rpr69_p84_tabl14.webp", "sources/photos/rpr69_p85_tabl15.webp"],
+      "sources": [{"book": "rpr69p", "locator": "стр. 84"}],
+      "status": "checked",
+      "notes": [
+        "Photos of the printed original, same edition as 'rpr69s'. They cover pages 84-85 (Table 14, art. 95-96, Table 15), which are missing in the sappers.org scan. Cite with locator 'стр. 84' / 'стр. 85'."
+      ]
+    },
+    {
+      "id": "vzd2019",
+      "name": "Учебник по военно-инженерной подготовке (ВЗД), 2019",
+      "file": "Uchebnik_po_VZD_3__2019_polny.pdf",
+      "pdf_sheets": 459,
+      "sources": [{"book": "vzd2019", "sheet": 1}],
+      "status": "checked",
+      "notes": [
+        "Born-digital. Printed page = PDF sheet. Formulas in the text layer have doubled italic glyphs: read them from images."
+      ]
+    },
+    {
+      "id": "prakt2023",
+      "name": "Практикум «Взрывное дело», 2023",
+      "file": "Praktikum_Vzryvnoe_delo_2023.pdf",
+      "pdf_sheets": 121,
+      "sources": [{"book": "prakt2023", "sheet": 1}],
+      "status": "checked",
+      "notes": [
+        "Excerpt of a larger book: TOC page numbers do not match sheets. Worked problems contain arithmetic errors, see tests/golden/evs_cases.json."
+      ]
+    },
+    {
+      "id": "gost2190_77",
+      "name": "ГОСТ 2190-77 «Провода саперные. Технические условия» (с изм. 1, 2)",
+      "url": "https://engenegr.ru/gost-2190-77",
+      "kind_of_source": "standard",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "gost2190_77", "locator": "весь документ"}],
+      "status": "checked",
+      "notes": [
+        "Open web source added on the user's instruction (2026-11-15). Values taken from it carry this id in 'sources'."
+      ]
+    },
+    {
+      "id": "ir_3012165_0302_94",
+      "name": "ИР 3012165-0302-94 «Руководство по техническому обслуживанию и текущему ремонту стартерных аккумуляторных батарей»",
+      "url": "https://files.stroyinf.ru/Data2/1/4293849/4293849372.htm",
+      "kind_of_source": "guideline",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "ir_3012165_0302_94", "locator": "весь документ"}],
+      "status": "checked",
+      "notes": [
+        "Open web source added on the user's instruction (2026-11-15). Values taken from it carry this id in 'sources'."
+      ]
+    },
+    {
+      "id": "simanovich_ab",
+      "name": "Симанович и др. «Стартерные аккумуляторные батареи», учебное пособие, БГТУ (PDF 2008)",
+      "url": "https://elib.belstu.by/bitstream/123456789/2944/1/starternye-akkumulyatornye-batarei_simanovich.pdf",
+      "pdf_sheets": 72,
+      "kind_of_source": "textbook",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "simanovich_ab", "locator": "весь документ"}],
+      "status": "checked",
+      "notes": [
+        "Open web source added on the user's instruction (2026-11-15). Values taken from it carry this id in 'sources'."
+      ]
+    },
+    {
+      "id": "lukyanov_vzr",
+      "name": "Лукьянов В.Г., Комащенко В.И., Шмурыгин В.А. «Взрывные работы», учебник, гл. 4 «Электрическое взрывание»",
+      "url": "https://studme.org/187223/geografiya/elektricheskoe_vzryvanie",
+      "kind_of_source": "textbook",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "lukyanov_vzr", "locator": "весь документ"}],
+      "status": "checked",
+      "notes": [
+        "Open web source added on the user's instruction (2026-11-15). Values taken from it carry this id in 'sources'."
+      ]
+    },
+    {
+      "id": "pgups_evs_slides",
+      "name": "ПГУПС, презентация 5.4 «Расчёт ЭВС со смешанным соединением электродетонаторов» (2019)",
+      "url": "https://studfile.net/preview/7693676/page:3/",
+      "kind_of_source": "lecture",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "pgups_evs_slides", "locator": "весь документ"}],
+      "status": "checked",
+      "notes": [
+        "Open web source added on the user's instruction (2026-11-15). Values taken from it carry this id in 'sources'."
+      ]
+    },
+    {
+      "id": "konspekt2021",
+      "name": "Конспект занятий «ВВ и стандартные заряды ВС РФ… Схемы ЭВС и их расчёт» (анонимный, 2021)",
+      "file": "pdfcoffee.com_-69-3-pdf-free.pdf",
+      "pdf_sheets": 103,
+      "kind_of_source": "lecture",
+      "url": "https://pdfcoffee.com/-69-3-pdf-free.html",
+      "accessed": "2026-11-15",
+      "sources": [{"book": "konspekt2021", "sheet": 1}],
+      "status": "checked",
+      "notes": [
+        "Downloaded by the user from a pdfcoffee page titled «РПР 69». It is not RPR-69: a 103-page lecture compilation (PDF metadata: LibreOffice 6.2, 2021-11-12, author 'Игорь').",
+        "Its ЭВС part (sheets 33-41) follows RPR-69 art. 65-110 closely and reproduces the sapper wire table (RPR Table 5, missing from RPR-69.pdf) on sheet 36.",
+        "Secondary source of unknown authorship: use only where it agrees with another source or fills a gap, and say so in notes.",
+        "Superseded for Table 5 by the original scan 'rpr69s' (its transcription had small errors: D=4-5 instead of 4,5 мм, '<23' instead of 'не менее 23')."
+      ]
+    }
+  ]
+}

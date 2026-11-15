@@ -1,0 +1,77 @@
+{
+  "format": "evs-golden-sources/1",
+  "description": "Worked examples of choosing the number of current sources (RPR-69 art. 117-120, original scan). 'expected' is exact; 'book' is printed. tools/validate_data.py recomputes them.",
+  "cases": [
+    {
+      "id": "rpr69_art117",
+      "kind": "series",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 53,
+        "locator": "левая половина, печатная стр. 106",
+        "article": "117",
+        "kind": "example"
+      },
+      "input": {"U": 40, "I": 2, "U_src": 6.0, "I_src": 6.0, "src": "acc_3st_60 (10-hour current, Table 14)"},
+      "expected": {"m_raw": 6.667, "m": 7, "U_bat": 42},
+      "book": {"m_raw": 6.72, "m": 7, "U_bat": 42},
+      "discrepancies": ["Arithmetic error: 40 / 6,0 = 6,67, printed 6,72. m = 7 unchanged."]
+    },
+    {
+      "id": "rpr69_art118",
+      "kind": "parallel",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 53,
+        "locator": "правая половина, печатная стр. 107",
+        "article": "118",
+        "kind": "example"
+      },
+      "input": {"U": 60, "I": 4, "U_src": 70, "I_src": 1, "src": "102-АМЦ-У-1,0, partly used, tested"},
+      "expected": {"n_raw": 4.0, "n": 4},
+      "book": {"n_raw": 4, "n": 4}
+    },
+    {
+      "id": "rpr69_art119",
+      "kind": "mixed",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 53,
+        "locator": "правая половина, печатная стр. 107",
+        "article": "119",
+        "kind": "example"
+      },
+      "input": {"U": 60, "I": 4, "U_src": 50, "I_src": 0.8, "src": "70-АМЦГ-1,3, tested"},
+      "expected": {"m_raw": 1.2, "m": 2, "n_raw": 5.0, "n": 5, "N": 10},
+      "book": {"m_raw": 1.2, "m": 2, "n_raw": 5, "n": 5, "N": 10},
+      "discrepancies": ["N = m*n is cited as 'формула (14)'; it is formula (13)."]
+    },
+    {
+      "id": "rpr69_art120",
+      "kind": "mixed_e0r0",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 54,
+        "locator": "левая половина, печатная стр. 108",
+        "article": "120",
+        "kind": "example"
+      },
+      "input": {"U": 160, "I": 8, "R": 20, "E0": 90, "R0": 40, "src": "102-АМЦ-У-1,0, measured"},
+      "expected": {
+        "m_raw": 3.556,
+        "m": 4,
+        "n_raw": 7.111,
+        "n": 8,
+        "N": 32,
+        "I_bat": 9.0,
+        "I_bat_n7": 8.4,
+        "N_reduced": 28
+      },
+      "book": {"m_raw": 3.6, "m": 4, "n_raw": 7.2, "n": 8, "N": 32, "I_bat": 9, "I_bat_n7": 8.3, "N_reduced": 28},
+      "discrepancies": [
+        "Arithmetic error: 2*8*40/90 = 7,11, printed 7,2. n = 8 unchanged.",
+        "With n = 7: 4*90 / (20 + 4*40/7) = 8,40 А; the book rounds the denominator to 43 and prints 8,3 А. Conclusion (≈ I, N = 28) unchanged."
+      ]
+    }
+  ]
+}

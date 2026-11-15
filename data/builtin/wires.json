@@ -1,0 +1,226 @@
+{
+  "format": "evs-catalog/1",
+  "category": "wires",
+  "description": "Wires and cables. r_basis tells what 'r_per_km' means: 'core' = 1 km of one core (RPR Tables 5 and 6 wording), 'wire' = 1 km of the whole wire as printed (vzd2019 sheet 214 wording). See docs/methods/evs.md section 'Длины и сопротивление проводов' for how the solver turns this into line resistance.",
+  "items": [
+    {
+      "id": "sp1",
+      "name": "СП-1",
+      "kind": "sapper_wire",
+      "cores": 1,
+      "r_basis": "core",
+      "params": {
+        "core_section": {"v": 0.75, "unit": "мм²", "raw": "0,75"},
+        "outer_size": {"text": "4,5 мм (диаметр)"},
+        "r_per_km": {"v": 25, "unit": "Ом/км", "raw": "25"},
+        "mass_per_km": {"v": 30, "unit": "кг/км", "raw": "30"},
+        "breaking_force": {"v": 30, "unit": "кг", "raw": "30"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "левая половина, печатная стр. 60",
+          "table": "5",
+          "kind": "table",
+          "draft": "rpr69_t05_sapernyi_provod"
+        },
+        {"book": "rpr69", "sheet": 58, "article": "70", "kind": "text"},
+        {"book": "rpr69", "sheet": [97, 102], "article": "110, 126", "kind": "example"}
+      ],
+      "status": "verified",
+      "notes": [
+        "Rubber-insulated, braided; core of 7 copper strands d = 0,37 мм.",
+        "25 Ом/км (RPR Table 5, original scan) matches the RPR-69 worked examples (art. 110, 126: 'провода одножильные', 25 Ом per 1000 м).",
+        "Single core: the line length counts both ways.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 5."
+      ]
+    },
+    {
+      "id": "sp2",
+      "name": "СП-2",
+      "kind": "sapper_wire",
+      "cores": 2,
+      "r_basis": "core",
+      "params": {
+        "core_section": {"v": 0.75, "unit": "мм²", "raw": "2*0,75"},
+        "outer_size": {"text": "4,5×8,5 мм"},
+        "r_per_km": {"v": 25, "unit": "Ом/км", "raw": "25 (одной жилы)"},
+        "mass_per_km": {"v": 60, "unit": "кг/км", "raw": "60"},
+        "breaking_force": {"v": 40, "unit": "кг", "raw": "40"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "левая половина, печатная стр. 60",
+          "table": "5",
+          "kind": "table",
+          "draft": "rpr69_t05_sapernyi_provod"
+        },
+        {"book": "rpr69", "sheet": 58, "article": "70", "kind": "text"}
+      ],
+      "status": "verified",
+      "notes": [
+        "25 Ом per km of ONE core: loop resistance of a two-core line = 2 x 25 x L / 1000.",
+        "RPR Table 5 (original scan, sheet 31).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 5."
+      ]
+    },
+    {
+      "id": "spp1",
+      "name": "СПП-1",
+      "kind": "sapper_wire",
+      "cores": 1,
+      "r_basis": "wire",
+      "params": {
+        "r_per_km": {"v": 37.5, "unit": "Ом/км", "raw": "37,5"},
+        "breaking_force": {"v": 23, "unit": "кг", "raw": "23"},
+        "r_core_max_gost": {"v": 39.5, "unit": "Ом/км", "raw": "39,5"},
+        "breaking_force_gost": {"v": 23, "unit": "кг", "raw": "225 Н (23 кгс)"},
+        "core_section": {"v": 0.5, "unit": "мм²", "raw": "0,5"},
+        "mass_per_km": {"v": 8, "unit": "кг/км", "raw": "8"},
+        "outer_size": {"text": "2,25 мм (диаметр)"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "левая половина, печатная стр. 60",
+          "table": "5",
+          "kind": "table",
+          "draft": "rpr69_t05_sapernyi_provod"
+        },
+        {"book": "vzd2019", "sheet": 214, "kind": "text", "draft": "vzd2019_t_provoda_sapernye"},
+        {
+          "book": "gost2190_77",
+          "locator": "п. 2.5.4 (сопротивление жилы), п. 2.6.1 (разрывное усилие)",
+          "kind": "text"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Each core: 7 copper strands, polyethylene sheath (sheet 214).",
+        "Single core: a two-wire line needs two runs, so the line length counts both ways (prakt2023 sheet 12, problem 2: section wires x2).",
+        "GOST 2190-77: core resistance at most 39,5 Ом/км at 20 °C. The calculation uses the textbook 37,5 Ом/км.",
+        "RPR Table 5 (original): 37,5 Ом per 1 km of ONE core, breaking force 'не менее' 23 / 45 кг, insulation 0,5-0,65 мм.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 5."
+      ]
+    },
+    {
+      "id": "spp2",
+      "name": "СПП-2",
+      "kind": "sapper_wire",
+      "cores": 2,
+      "r_basis": "wire",
+      "params": {
+        "r_per_km": {"v": 75, "unit": "Ом/км", "raw": "75"},
+        "breaking_force": {"v": 45, "unit": "кг", "raw": "45"},
+        "r_core_max_gost": {"v": 41.0, "unit": "Ом/км", "raw": "41,0"},
+        "breaking_force_gost": {"v": 45, "unit": "кг", "raw": "441 Н (45 кгс)"},
+        "core_section": {"v": 0.5, "unit": "мм²", "raw": "2*0,5"},
+        "mass_per_km": {"v": 16, "unit": "кг/км", "raw": "16"},
+        "outer_size": {"text": "свит из двух проводов СПП-1"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "левая половина, печатная стр. 60",
+          "table": "5",
+          "kind": "table",
+          "draft": "rpr69_t05_sapernyi_provod"
+        },
+        {"book": "vzd2019", "sheet": 214, "kind": "text", "draft": "vzd2019_t_provoda_sapernye"},
+        {
+          "book": "gost2190_77",
+          "locator": "п. 2.5.4 (сопротивление жилы), п. 2.6.1 (разрывное усилие)",
+          "kind": "text"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Each core: 7 copper strands (sheet 214).",
+        "75 Ом is the loop resistance of 1 km of two-core wire (both cores). Confirmed by the user 2026-11-15; the Praktikum uses it the same way.",
+        "GOST 2190-77 gives the maximum per core at 20 °C: 41,0 Ом/км (loop 82 Ом/км). The calculation uses the textbook 75 Ом/км; the GOST limit is shown for reference.",
+        "RPR Table 5 (original): 37,5 Ом per 1 km of ONE core, breaking force 'не менее' 23 / 45 кг, insulation 0,5-0,65 мм.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 5."
+      ]
+    },
+    {
+      "id": "lto",
+      "name": "ЛТО (плоский линейный телефонный)",
+      "kind": "cable",
+      "cores": 2,
+      "r_basis": "core",
+      "params": {
+        "core_section": {"v": 0.6, "unit": "мм²", "raw": "2×0.6"},
+        "outer_size": {"text": "3.6×6.5 мм"},
+        "r_per_km": {"v": 65, "unit": "Ом/км", "raw": "65"},
+        "mass_per_km": {"v": 33, "unit": "кг/км", "raw": "33"}
+      },
+      "sources": [
+        {"book": "rpr69", "sheet": 60, "table": "6", "kind": "table", "draft": "rpr69_t06_kabeli"},
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "правая половина, печатная стр. 61",
+          "table": "6",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": ["Checked against the original scan (rpr69s sheet 31, p. 61)."]
+    },
+    {
+      "id": "tel_twisted",
+      "name": "ЛТВ (витой линейный телефонный)",
+      "kind": "cable",
+      "cores": 2,
+      "r_basis": "core",
+      "params": {
+        "core_section": {"v": 0.6, "unit": "мм²", "raw": "2×0.6"},
+        "outer_size": {"text": "7.5 мм (диаметр)"},
+        "r_per_km": {"v": 65, "unit": "Ом/км", "raw": "65"},
+        "mass_per_km": {"v": 37, "unit": "кг/км", "raw": "37"}
+      },
+      "sources": [
+        {"book": "rpr69", "sheet": 60, "table": "6", "kind": "table", "draft": "rpr69_t06_kabeli"},
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "правая половина, печатная стр. 61",
+          "table": "6",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": ["Checked against the original scan (rpr69s sheet 31, p. 61)."]
+    },
+    {
+      "id": "vmv",
+      "name": "ВМВ (провод для промышленных взрывных работ)",
+      "kind": "cable",
+      "cores": 1,
+      "r_basis": "core",
+      "params": {
+        "core_section": {"v": 0.8, "unit": "мм²", "raw": "1×0.8"},
+        "outer_size": {"text": "2.3 мм (диаметр)"},
+        "r_per_km": {"v": 40, "unit": "Ом/км", "raw": "40"},
+        "mass_per_km": {"v": 8.2, "unit": "кг/км", "raw": "8,2"}
+      },
+      "sources": [
+        {"book": "rpr69", "sheet": 60, "table": "6", "kind": "table", "draft": "rpr69_t06_kabeli"},
+        {
+          "book": "rpr69s",
+          "sheet": 31,
+          "locator": "правая половина, печатная стр. 61",
+          "table": "6",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": ["Checked against the original scan (rpr69s sheet 31, p. 61)."]
+    }
+  ]
+}

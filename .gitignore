@@ -1,0 +1,12 @@
+# Generated and temporary files: page renders, cut PDFs, review page, raw text, one-off scripts.
+# Everything here can be rebuilt with tools/extract.py or thrown away.
+/tmp/
+
+# Source books and downloaded scans (copyrighted, large): kept locally, not in the repository (PLAN.md, section 4).
+/*.pdf
+/sources/
+
+# Local environments and OS files
+tools/.venv/
+__pycache__/
+.DS_Store

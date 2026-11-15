@@ -1,0 +1,200 @@
+{
+  "format": "evs-golden/1",
+  "description": "Worked ЭВС examples from the books. 'expected' is the arithmetically correct result of the book's own method and inputs; 'book' is what the book prints. The C++ tests assert 'expected' (tolerance 'tol', Ом/В/А) and the verdicts. tools/validate_data.py recomputes 'expected' from 'input'. Wire resistance per conductor: r = L * r_pr / 1000; lengths already include margins and doubling where the book applies them ('L_*_used').",
+  "cases": [
+    {
+      "id": "rpr69_art110",
+      "title": "РПР-69 ст. 110, пример: последовательная сеть",
+      "source": {"book": "rpr69", "sheet": 97, "article": "110", "kind": "example"},
+      "scheme": "series",
+      "current": "dc",
+      "input": {"r_m": 25, "L_uch_used": 200, "r_pr_uch": 25, "m": 20, "r_d": 2.5, "wire": "sp1"},
+      "input_notes": [
+        "Main line 1000 m 'в оба конца', single-core wire: r_m = 25 Ом. 25 Ом/км is СП-1 (RPR Table 5, reprinted in konspekt2021 sheet 36; data/builtin/wires.json 'sp1')."
+      ],
+      "expected": {"r_uch": 5, "R": 80, "I": 1.0, "U": 80},
+      "book": {"r_uch": 5, "R": 80, "I": 1, "U": 80},
+      "tol": 0.01
+    },
+    {
+      "id": "rpr69_art111",
+      "title": "РПР-69 ст. 111, пример: попарно-параллельная сеть",
+      "source": {"book": "rpr69", "sheet": 98, "article": "111", "kind": "example"},
+      "scheme": "pairs",
+      "current": "dc",
+      "input": {"r_m": 25, "r_uch": 5, "m_p": 20, "r_d": 2.5},
+      "expected": {"R": 55, "I": 1.5, "U": 82.5},
+      "book": {"R": 55, "I": 1.5, "U": 82.5},
+      "tol": 0.01
+    },
+    {
+      "id": "rpr69_art126_gzu",
+      "title": "РПР-69 ст. 126, пример: последовательная сеть с ГЗУ",
+      "source": {"book": "rpr69", "sheet": 102, "article": "126", "kind": "example"},
+      "scheme": "series_gzu",
+      "current": "dc",
+      "input": {
+        "L_m_used": 600,
+        "r_pr_m": 25,
+        "L_uch_used": 200,
+        "r_pr_uch": 25,
+        "m": 25,
+        "r_d": 2.5,
+        "r_g": 10,
+        "wire": "sp1"
+      },
+      "input_notes": ["Main line 600 m 'в оба конца', single-core wire СП-1, 25 Ом/км."],
+      "expected": {"r_m": 15, "r_uch": 5, "R": 332.5, "I": 1.0, "U": 332.5},
+      "book": {"r_m": 15, "r_uch": 5, "R": 322.5, "I": 1, "U": 322.5},
+      "tol": 0.01,
+      "discrepancies": [
+        "Arithmetic error in the book: 15 + 5 + 25 * (2,5 + 10) = 332,5 Ом, printed 322,5 Ом (checked on the page image, tmp/pages/rpr69_sheet102_gzu_example.png). U is 10 В too low."
+      ]
+    },
+    {
+      "id": "prakt2023_p1",
+      "title": "Практикум, задача №1: последовательная сеть, 100 ЭД",
+      "source": {"book": "prakt2023", "sheet": [9, 10], "kind": "example"},
+      "scheme": "series",
+      "current": "dc",
+      "input": {
+        "distance_m": 600,
+        "margin": 1.125,
+        "wire_m": "spp2",
+        "L_m_used": 675,
+        "r_pr_m": 75,
+        "L_uch_used": 300,
+        "wire_uch": "spp2",
+        "r_pr_uch": 75,
+        "m": 100,
+        "r_d": 2.5
+      },
+      "input_notes": ["Margin applied to the main line only. Section wire 300 m used as given."],
+      "expected": {"r_m": 50.625, "r_uch": 22.5, "R": 323.125, "I": 1.0, "U": 323.125},
+      "book": {"r_m": 50.6, "r_uch": 22.5, "R": 323.1, "R_accepted": 323, "I": 1, "U": 323},
+      "tol": 0.01,
+      "discrepancies": ["Book rounds R to 323 Ом before computing U (323 В). Difference 0,125 В, not an error of method."]
+    },
+    {
+      "id": "prakt2023_p2",
+      "title": "Практикум, задача №2: попарно-параллельная сеть, 26 пар, выбор источника",
+      "source": {"book": "prakt2023", "sheet": [11, 12, 13], "kind": "example"},
+      "scheme": "pairs",
+      "current": "dc",
+      "input": {
+        "distance_m": 450,
+        "margin": 1.125,
+        "wire_m": "spp2",
+        "L_m_used": 506.25,
+        "r_pr_m": 75,
+        "a_n": 27,
+        "m_p": 26,
+        "wire_uch": "spp1",
+        "L_uch_used": 1575,
+        "r_pr_uch": 37.5,
+        "r_d": 2.5
+      },
+      "input_notes": [
+        "Section wire length per the book: L_uch = (a_n*(m_p-1) + 25) * 2 * 1,125 = 1575 м (two rows of charges, single-core СПП-1 so x2).",
+        "The text after the formula says '50 м — длина проводов от узла безопасности до зарядов' while the formula adds 25. Formula value used."
+      ],
+      "expected": {"r_m": 37.96875, "r_uch": 59.0625, "r_ed": 32.5, "R": 129.53125, "I": 1.5, "U": 194.296875},
+      "book": {"r_m": 39.96, "r_m_accepted": 40, "r_uch": 59, "r_ed": 32.5, "R": 131.5, "I": 1.5, "U": 197.25},
+      "tol": 0.01,
+      "verdicts": [
+        {"source": "kpm3", "usable": true, "why": "26 <= 130 пар, R <= 220 Ом"},
+        {"source": "kpm1a", "usable": false, "why": "R > 80 Ом (Table 3.2)"},
+        {"source": "kvp4_100", "usable": false, "why": "pairs scheme not in Table 3.3"}
+      ],
+      "book_verdict": "Only КПМ-3 can be used.",
+      "discrepancies": [
+        "Arithmetic error: 506,25 * 75 / 1000 = 37,97 Ом, the book prints 39,96 and accepts 40. R and U are therefore 2 Ом and 3 В too high. Verdict unchanged.",
+        "The comparison table gives КПМ-1А 'до 130 пар'; Table 3.2 (vzd2019 sheet 221) gives 60 пар. Verdict unchanged (fails on resistance)."
+      ]
+    },
+    {
+      "id": "prakt2023_p3",
+      "title": "Практикум, задача №3: параллельно-пучковая сеть, 4 ветви, КПМ-3",
+      "source": {"book": "prakt2023", "sheet": [13, 14], "kind": "example"},
+      "scheme": "parallel",
+      "current": "dc",
+      "input": {
+        "L_m_used": 400,
+        "wire_m": "spp2",
+        "r_pr_m": 75,
+        "L_v_used": 40,
+        "wire_uch": "spp2",
+        "r_pr_uch": 75,
+        "n": 4,
+        "r_d": 2.5,
+        "i_single": 0.5
+      },
+      "input_notes": ["No margin applied in this problem."],
+      "expected": {"r_m": 30, "r_uch": 3, "R": 31.375, "I": 2.0, "U": 62.75},
+      "book": {"r_m": 30, "r_uch": 3, "R": 31.4, "I": 2},
+      "tol": 0.01,
+      "verdicts": [{"source": "kpm3", "usable": false, "why": "4 <= 5 ЭД, but R 31,4 > 30 Ом"}],
+      "book_verdict": "КПМ-3 cannot be used (resistance above the table value).",
+      "discrepancies": ["The book does not compute U for this problem."]
+    },
+    {
+      "id": "rpr69_art112",
+      "title": "РПР-69 ст. 112, пример: параллельно-пучковая сеть, 10 ветвей",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 51,
+        "locator": "левая половина, печатная стр. 102",
+        "article": "112",
+        "kind": "example"
+      },
+      "scheme": "parallel",
+      "current": "dc",
+      "input": {
+        "L_m_used": 400,
+        "r_pr_m": 25,
+        "L_v_used": 20,
+        "r_pr_uch": 25,
+        "n": 10,
+        "r_d": 2.5,
+        "i_single": 0.5,
+        "wire": "sp1"
+      },
+      "input_notes": ["Main line 400 m 'в оба конца', single-core wire 25 Ом/км; each branch 20 m wire and one ЭДП."],
+      "expected": {"r_m": 10, "r_uch": 0.5, "R": 10.3, "I": 5.0, "U": 51.5},
+      "book": {"r_m": 10, "r_uch": 0.5, "R": 10.3, "I": 5.0, "U": 51.5},
+      "tol": 0.01
+    },
+    {
+      "id": "rpr69_art113",
+      "title": "РПР-69 ст. 113, пример: смешанная сеть, 4 ветви по 10 ЭД",
+      "source": {
+        "book": "rpr69s",
+        "sheet": 51,
+        "locator": "правая половина, печатная стр. 103",
+        "article": "113",
+        "kind": "example"
+      },
+      "scheme": "mixed",
+      "current": "dc",
+      "input": {
+        "L_m_used": 500,
+        "r_pr_m": 25,
+        "L_uch_used": 60,
+        "r_pr_uch": 25,
+        "n": 4,
+        "m": 10,
+        "r_d": 2.5,
+        "wire": "sp1"
+      },
+      "input_notes": [
+        "Main line 500 m 'в оба конца'. Section wires of one branch: 9 pieces of 5 m between detonators + 2 ends of 7,5 m = 60 m. Single-core wire 25 Ом/км. i = 1 А per branch (art. 67)."
+      ],
+      "expected": {"r_m": 12.5, "r_uch": 1.5, "R": 19.125, "I": 4.0, "U": 76.5},
+      "book": {"r_m": 12.5, "r_uch": 1.5, "R": 19.1, "I": 4.0, "U": 76.4},
+      "tol": 0.01,
+      "discrepancies": [
+        "Book rounds R to 19,1 Ом before computing U (76,4 В instead of 76,5 В). Rounding, not a method error."
+      ]
+    }
+  ]
+}

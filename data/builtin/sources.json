@@ -1,0 +1,1990 @@
+{
+  "format": "evs-catalog/1",
+  "category": "sources",
+  "description": "Current sources. 'limits' rows are the machine tables: scheme (series | parallel | pairs), detonator id (null = not stated), max count (ЭД, or pairs for 'pairs') and max total network resistance. 'set' tells which book set the source belongs to.",
+  "items": [
+    {
+      "id": "kpm3",
+      "name": "КПМ-3",
+      "kind": "capacitor_machine",
+      "set": "vzd2019",
+      "params": {
+        "u_nom": {"v": 1600, "unit": "В", "raw": "1600"},
+        "capacitance": {"v": 4, "unit": "мкФ", "raw": "4"},
+        "mass": {"v": 1.7, "unit": "кг", "raw": "1,7"},
+        "mass_kit": {"v": 2.3, "unit": "кг", "raw": "2,3"},
+        "extra_resistor": {"v": 220, "unit": "Ом", "raw": "220"}
+      },
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 200, "unit": "шт", "raw": "200"},
+          "max_r": {"max": 600, "unit": "Ом", "raw": "600"},
+          "source": {"book": "vzd2019", "sheet": 219, "table": "3.1", "kind": "table", "draft": "vzd2019_t3_1"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 5, "unit": "шт", "raw": "5"},
+          "max_r": {"max": 30, "unit": "Ом", "raw": "30"},
+          "source": {"book": "vzd2019", "sheet": 219, "table": "3.1", "kind": "table", "draft": "vzd2019_t3_1"}
+        },
+        {
+          "scheme": "pairs",
+          "ed": "edp",
+          "max_count": {"max": 130, "unit": "пар", "raw": "до 130 пар"},
+          "max_r": {"max": 220, "unit": "Ом", "raw": "220"},
+          "source": {"book": "vzd2019", "sheet": 219, "table": "3.1", "kind": "table", "draft": "vzd2019_t3_1"}
+        }
+      ],
+      "sources": [
+        {"book": "vzd2019", "sheet": 219, "table": "3.1", "kind": "table", "draft": "vzd2019_t3_1"},
+        {"book": "vzd2019", "sheet": 219, "kind": "text"},
+        {"book": "vzd2019", "sheet": 228, "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 3.1 does not name the detonator type; the Praktikum applies it to ЭДП (2,5 Ом).",
+        "The 220 Ом extra resistor (sheet 228) is for test-firing detonators with unknown parameters, not for the calculation.",
+        "Detonator type not printed; applied to ЭДП as in the Praktikum (user decision 2026-11-15)."
+      ]
+    },
+    {
+      "id": "kpm1a",
+      "name": "КПМ-1А",
+      "kind": "capacitor_machine",
+      "set": "vzd2019",
+      "params": {
+        "u_nom": {"v": 1500, "unit": "В", "raw": "1500"},
+        "capacitance": {"v": 2, "unit": "мкФ", "raw": "2"},
+        "mass": {"v": 1.6, "unit": "кг", "raw": "1,6"},
+        "mass_kit": {"v": 2.1, "unit": "кг", "raw": "2,1"}
+      },
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 100, "unit": "шт", "raw": "100"},
+          "max_r": {"max": 350, "unit": "Ом", "raw": "350"},
+          "source": {"book": "vzd2019", "sheet": 221, "table": "3.2", "kind": "table", "draft": "vzd2019_t3_2"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 5, "unit": "шт", "raw": "5"},
+          "max_r": {"max": 15, "unit": "Ом", "raw": "15"},
+          "source": {"book": "vzd2019", "sheet": 221, "table": "3.2", "kind": "table", "draft": "vzd2019_t3_2"}
+        },
+        {
+          "scheme": "pairs",
+          "ed": "edp",
+          "max_count": {"max": 60, "unit": "пар", "raw": "до 60 пар"},
+          "max_r": {"max": 80, "unit": "Ом", "raw": "80"},
+          "source": {"book": "vzd2019", "sheet": 221, "table": "3.2", "kind": "table", "draft": "vzd2019_t3_2"}
+        }
+      ],
+      "sources": [
+        {"book": "vzd2019", "sheet": 221, "table": "3.2", "kind": "table", "draft": "vzd2019_t3_2"},
+        {"book": "vzd2019", "sheet": 220, "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 3.2 is titled 'Возможности машинки КПМ-3' but stands in the КПМ-1А section; its series/parallel values equal RPR КПМ-1 for ЭДП. Taken as КПМ-1А.",
+        "prakt2023 sheet 12 (problem 2) lists КПМ-1А as 'до 130 пар', contradicting Table 3.2 (60 пар). Table 3.2 is used.",
+        "Two КПМ-1А joined by the cable are 'approximately equal to КПМ-3' (sheet 220): qualitative only, no table.",
+        "Detonator type not printed; applied to ЭДП as in the Praktikum (user decision 2026-11-15)."
+      ],
+      "corrections": [
+        {
+          "field": "title of Table 3.2",
+          "printed": "Возможности машинки КПМ-3",
+          "corrected": "Возможности машинки КПМ-1А",
+          "evidence": "Table stands in the КПМ-1А section (sheet 221); series/parallel rows equal RPR КПМ-1 for ЭДП (Table 7, sheet 65)."
+        },
+        {
+          "field": "limits.pairs.max_count (Praktikum)",
+          "printed": "до 130 пар (prakt2023 sheet 12)",
+          "corrected": "до 60 пар",
+          "evidence": "Textbook Table 3.2, sheet 221."
+        }
+      ]
+    },
+    {
+      "id": "pm4",
+      "name": "ПМ-4",
+      "kind": "magnetoelectric_machine",
+      "set": "vzd2019",
+      "params": {},
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 5, "unit": "шт", "raw": "5"},
+          "max_r": {"max": 20, "unit": "Ом", "raw": "до 20"},
+          "source": {"book": "vzd2019", "sheet": 224, "kind": "text"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 2, "unit": "шт", "raw": "2"},
+          "max_r": {"max": 6, "unit": "Ом", "raw": "до 6"},
+          "source": {"book": "vzd2019", "sheet": 224, "kind": "text"}
+        }
+      ],
+      "sources": [{"book": "vzd2019", "sheet": 224, "kind": "text"}],
+      "status": "checked",
+      "notes": [
+        "Text: 5 series ЭД up to 20 Ом or 2 parallel ЭД up to 6 Ом. No voltage or current given.",
+        "Detonator type not printed; applied to ЭДП as in the Praktikum (user decision 2026-11-15). ПМ-4 treated the same way by analogy."
+      ]
+    },
+    {
+      "id": "kvp4_100",
+      "name": "КВП-4/100",
+      "kind": "capacitor_machine",
+      "set": "vzd2019",
+      "params": {
+        "u_nom": {"v": 520, "tol": 20, "unit": "В", "raw": "520±20"},
+        "mass": {"v": 1.0, "unit": "кг", "raw": "1,0"},
+        "impulse": {"v": 1200, "unit": "мДж", "raw": "1200"},
+        "line_length": {"max": 1000, "unit": "м", "raw": "до 1000"},
+        "resource": {"v": 20000, "unit": "раз", "raw": "20 000"},
+        "storage": {"v": 6, "unit": "лет", "raw": "6"},
+        "dimensions": {"text": "160×90×60 мм"},
+        "temperature": {"text": "-40…+50 °C"}
+      },
+      "limits": [
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 6, "unit": "шт", "raw": "6"},
+          "max_r": {"max": 250, "unit": "Ом", "raw": "до 250"},
+          "source": {"book": "vzd2019", "sheet": 226, "table": "3.3", "kind": "table", "draft": "vzd2019_t3_3"}
+        },
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 100, "unit": "шт", "raw": "100"},
+          "max_r": {"max": 250, "unit": "Ом", "raw": "до 250"},
+          "source": {"book": "vzd2019", "sheet": 226, "table": "3.3", "kind": "table", "draft": "vzd2019_t3_3"}
+        }
+      ],
+      "sources": [{"book": "vzd2019", "sheet": 226, "table": "3.3", "kind": "table", "draft": "vzd2019_t3_3"}],
+      "status": "checked",
+      "notes": [
+        "Table cell 'параллельно последовательно / 6 100' read as parallel 6, series 100.",
+        "The pairs scheme is not listed; the Praktikum treats it as not applicable (problem 2, sheet 12-13).",
+        "'Сопротивление взрывной цепи до 250 Ом' is one value for the whole device, copied into each limit row."
+      ]
+    },
+    {
+      "id": "kpm1",
+      "name": "КПМ-1",
+      "kind": "capacitor_machine",
+      "set": "rpr69",
+      "params": {},
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 100, "unit": "шт", "raw": "100"},
+          "max_r": {"max": 350, "unit": "Ом", "raw": "350"},
+          "source": {"book": "rpr69", "sheet": 65, "table": "7", "kind": "table", "draft": "rpr69_t07_kpm1"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 5, "unit": "шт", "raw": "5"},
+          "max_r": {"max": 15, "unit": "Ом", "raw": "15"},
+          "source": {"book": "rpr69", "sheet": 65, "table": "7", "kind": "table", "draft": "rpr69_t07_kpm1"}
+        },
+        {
+          "scheme": "series",
+          "ed": "ed8",
+          "max_count": {"v": 100, "unit": "шт", "raw": "100"},
+          "max_r": {"max": 300, "unit": "Ом", "raw": "300"},
+          "source": {"book": "rpr69", "sheet": 65, "table": "7", "kind": "table", "draft": "rpr69_t07_kpm1"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "ed8",
+          "max_count": {"v": 4, "unit": "шт", "raw": "4"},
+          "max_r": {"max": 15, "unit": "Ом", "raw": "15"},
+          "source": {"book": "rpr69", "sheet": 65, "table": "7", "kind": "table", "draft": "rpr69_t07_kpm1"}
+        }
+      ],
+      "sources": [
+        {"book": "rpr69", "sheet": 65, "table": "7", "kind": "table", "draft": "rpr69_t07_kpm1"},
+        {
+          "book": "rpr69s",
+          "sheet": 34,
+          "locator": "левая половина, печатная стр. 66",
+          "table": "7",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": ["Table 7 checked against the original scan (rpr69s sheet 34, p. 66): identical."]
+    },
+    {
+      "id": "kpm1_x2",
+      "name": "Две соединённые КПМ-1",
+      "kind": "capacitor_machine",
+      "set": "rpr69",
+      "params": {},
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 200, "unit": "шт", "raw": "200"},
+          "max_r": {"max": 700, "unit": "Ом", "raw": "700"},
+          "source": {"book": "rpr69", "sheet": 68, "table": "8", "kind": "table", "draft": "rpr69_t08_kpm1_dve"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 5, "unit": "шт", "raw": "5"},
+          "max_r": {"max": 30, "unit": "Ом", "raw": "30"},
+          "source": {"book": "rpr69", "sheet": 68, "table": "8", "kind": "table", "draft": "rpr69_t08_kpm1_dve"}
+        },
+        {
+          "scheme": "series",
+          "ed": "ed8",
+          "max_count": {"v": 200, "unit": "шт", "raw": "200"},
+          "max_r": {"max": 600, "unit": "Ом", "raw": "600"},
+          "source": {"book": "rpr69", "sheet": 68, "table": "8", "kind": "table", "draft": "rpr69_t08_kpm1_dve"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "ed8",
+          "max_count": {"v": 4, "unit": "шт", "raw": "4"},
+          "max_r": {"max": 30, "unit": "Ом", "raw": "30"},
+          "source": {"book": "rpr69", "sheet": 68, "table": "8", "kind": "table", "draft": "rpr69_t08_kpm1_dve"}
+        }
+      ],
+      "sources": [
+        {"book": "rpr69", "sheet": 68, "table": "8", "kind": "table", "draft": "rpr69_t08_kpm1_dve"},
+        {
+          "book": "rpr69s",
+          "sheet": 35,
+          "locator": "правая половина, печатная стр. 69",
+          "table": "8",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": ["Table 8 checked against the original scan (rpr69s sheet 35, p. 69): identical."]
+    },
+    {
+      "id": "kpm2",
+      "name": "КПМ-2",
+      "kind": "capacitor_machine",
+      "set": "rpr69",
+      "params": {"u_nom": {"v": 1500, "unit": "В", "raw": "1500"}, "mass": {"v": 6, "unit": "кг", "raw": "около 6"}},
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 300, "unit": "шт", "raw": "300"},
+          "max_r": {"max": 900, "unit": "Ом", "raw": "900"},
+          "source": {"book": "rpr69", "sheet": 69, "table": "9", "kind": "table", "draft": "rpr69_t09_kpm2"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "edp",
+          "max_count": {"v": 6, "unit": "шт", "raw": "6"},
+          "max_r": {"max": 50, "unit": "Ом", "raw": "50"},
+          "source": {"book": "rpr69", "sheet": 69, "table": "9", "kind": "table", "draft": "rpr69_t09_kpm2"}
+        },
+        {
+          "scheme": "series",
+          "ed": "ed8",
+          "max_count": {"v": 200, "unit": "шт", "raw": "200"},
+          "max_r": {"max": 600, "unit": "Ом", "raw": "600"},
+          "source": {"book": "rpr69", "sheet": 69, "table": "9", "kind": "table", "draft": "rpr69_t09_kpm2"}
+        },
+        {
+          "scheme": "parallel",
+          "ed": "ed8",
+          "max_count": {"v": 4, "unit": "шт", "raw": "4"},
+          "max_r": {"max": 30, "unit": "Ом", "raw": "30"},
+          "source": {"book": "rpr69", "sheet": 69, "table": "9", "kind": "table", "draft": "rpr69_t09_kpm2"}
+        }
+      ],
+      "sources": [
+        {"book": "rpr69", "sheet": 69, "table": "9", "kind": "table", "draft": "rpr69_t09_kpm2"},
+        {
+          "book": "rpr69s",
+          "sheet": 36,
+          "locator": "левая половина, печатная стр. 70",
+          "table": "9",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 36,
+          "locator": "левая половина, печатная стр. 70",
+          "article": "81",
+          "kind": "text"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "RPR sheet 69 footnote: КПМ-2 is out of production.",
+        "Table 9 checked against the original scan (rpr69s sheet 36, p. 70): identical."
+      ]
+    },
+    {
+      "id": "pm1",
+      "name": "ПМ-1",
+      "kind": "magnetoelectric_machine",
+      "set": "rpr69",
+      "params": {
+        "u_at_290": {"v": 290, "unit": "В", "raw": "290"},
+        "i_at_290": {"v": 1, "unit": "А", "raw": "1"},
+        "i_max": {"max": 1.5, "unit": "А", "raw": "не может превысить 1,5"}
+      },
+      "limits": [
+        {
+          "scheme": "series",
+          "ed": "edp",
+          "max_count": {"v": 100, "unit": "шт", "raw": "100"},
+          "max_r": {"max": 290, "unit": "Ом", "raw": "290"},
+          "source": {"book": "rpr69", "sheet": 73, "table": "10", "kind": "table", "draft": "rpr69_t10_pm1"}
+        },
+        {
+          "scheme": "series",
+          "ed": "ed8",
+          "max_count": {"v": 50, "unit": "шт", "raw": "50"},
+          "max_r": {"max": 200, "unit": "Ом", "raw": "200"},
+          "source": {"book": "rpr69", "sheet": 73, "table": "10", "kind": "table", "draft": "rpr69_t10_pm1"}
+        }
+      ],
+      "sources": [
+        {"book": "rpr69", "sheet": 73, "table": "10", "kind": "table", "draft": "rpr69_t10_pm1"},
+        {
+          "book": "rpr69s",
+          "sheet": 38,
+          "locator": "левая половина, печатная стр. 74",
+          "table": "10",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "The ЭД-8 row says 'То же' in the method column: read as series.",
+        "Table 10 checked against the original scan (rpr69s sheet 38, p. 74): identical.",
+        "Art. 85 text (p. 74): at 290 Ом external resistance ПМ-1 gives 290 В and 1 А; current never exceeds 1,5 А, so only series connection; 100 ЭДП on up to 1,5 km of single-core wire."
+      ]
+    },
+    {
+      "id": "bat_bas_80_u_1_0",
+      "name": "БАС-80-У-1,0",
+      "aliases": ["102-АМЦ-У-1.0"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Анодные батареи",
+      "params": {
+        "u_initial": {"v": 102.0, "unit": "В", "raw": "102"},
+        "u_end_warranty": {"v": 60.0, "unit": "В", "raw": "60"},
+        "shelf_life": {"v": 15.0, "unit": "мес", "raw": "15"},
+        "r_test_load": {"v": 7000.0, "unit": "Ом", "raw": "7000"},
+        "r_internal": {"min": 35.0, "max": 40.0, "unit": "Ом", "raw": "35—40"},
+        "mass": {"v": 3.0, "unit": "кг", "raw": "3,00"},
+        "temperature": {"text": "—40+60"},
+        "u_after_6_months": {"v": 96.0, "unit": "В", "raw": "96"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_bas_g_80_u_2_1",
+      "name": "БАС-Г-80-У-2,1",
+      "aliases": ["100-АМЦГ-У-2,0"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Анодные батареи",
+      "params": {
+        "u_initial": {"v": 100.0, "unit": "В", "raw": "100"},
+        "u_end_warranty": {"v": 60.0, "unit": "В", "raw": "60"},
+        "shelf_life": {"v": 15.0, "unit": "мес", "raw": "15"},
+        "r_test_load": {"v": 7000.0, "unit": "Ом", "raw": "7000"},
+        "r_internal": {"min": 40.0, "max": 50.0, "unit": "Ом", "raw": "40—50"},
+        "mass": {"v": 3.35, "unit": "кг", "raw": "3,35"},
+        "temperature": {"text": "—40+60"},
+        "u_after_6_months": {"v": 93.0, "unit": "В", "raw": "93"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_bas_g_80_l_2_1",
+      "name": "БАС-Г-80-Л-2,1",
+      "aliases": ["100-АМЦГ-2,0"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Анодные батареи",
+      "params": {
+        "u_initial": {"v": 100.0, "unit": "В", "raw": "100"},
+        "u_end_warranty": {"v": 60.0, "unit": "В", "raw": "60"},
+        "shelf_life": {"v": 15.0, "unit": "мес", "raw": "15"},
+        "r_test_load": {"v": 7000.0, "unit": "Ом", "raw": "7000"},
+        "r_internal": {"min": 40.0, "max": 50.0, "unit": "Ом", "raw": "40—50"},
+        "mass": {"v": 3.35, "unit": "кг", "raw": "3,35"},
+        "temperature": {"text": "—20+60"},
+        "u_after_6_months": {"v": 93.0, "unit": "В", "raw": "93"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_bas_g_60_u_1_3",
+      "name": "БАС-Г-60-У-1,3",
+      "aliases": ["70-АМЦГ-У-1,3"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Анодные батареи",
+      "params": {
+        "u_initial": {"v": 70.0, "unit": "В", "raw": "70"},
+        "u_end_warranty": {"v": 40.0, "unit": "В", "raw": "40"},
+        "shelf_life": {"v": 15.0, "unit": "мес", "raw": "15"},
+        "r_test_load": {"v": 4680.0, "unit": "Ом", "raw": "4680"},
+        "r_internal": {"min": 35.0, "max": 40.0, "unit": "Ом", "raw": "35—40"},
+        "mass": {"v": 1.6, "unit": "кг", "raw": "1.60"},
+        "temperature": {"text": "—40+60"},
+        "u_after_6_months": {"v": 62.0, "unit": "В", "raw": "62"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ],
+      "corrections": [
+        {
+          "field": "aliases (new designation)",
+          "printed": "70-АМЦГ-2,0 (RPR-69.pdf, retyped)",
+          "corrected": "70-АМЦГ-У-1,3",
+          "evidence": "Original scan rpr69s sheet 40 (Table 11, p. 78)."
+        }
+      ]
+    },
+    {
+      "id": "bat_bas_g_60_l_1_3",
+      "name": "БАС-Г-60-Л-1,3",
+      "aliases": ["70-АМЦГ-1,3"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Анодные батареи",
+      "params": {
+        "u_initial": {"v": 70.0, "unit": "В", "raw": "70"},
+        "u_end_warranty": {"v": 40.0, "unit": "В", "raw": "40"},
+        "shelf_life": {"v": 15.0, "unit": "мес", "raw": "15"},
+        "r_test_load": {"v": 4680.0, "unit": "Ом", "raw": "4680"},
+        "r_internal": {"min": 35.0, "max": 40.0, "unit": "Ом", "raw": "35—40"},
+        "mass": {"v": 1.6, "unit": "кг", "raw": "1.60"},
+        "temperature": {"text": "—20+60"},
+        "u_after_6_months": {"v": 62.0, "unit": "В", "raw": "62"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_kbs_h_0_7",
+      "name": "КБС-Х-0,7",
+      "aliases": ["4,1-ФМЦ-0,7"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Карманные батареи",
+      "params": {
+        "u_initial": {"v": 4.1, "unit": "В", "raw": "4,1"},
+        "u_end_warranty": {"v": 2.0, "unit": "В", "raw": "2,0"},
+        "shelf_life": {"v": 8.0, "unit": "мес", "raw": "8"},
+        "r_test_load": {"v": 10.0, "unit": "Ом", "raw": "10"},
+        "r_internal": {"min": 1.0, "max": 1.15, "unit": "Ом", "raw": "1—1,15"},
+        "mass": {"v": 0.15, "unit": "кг", "raw": "0,15"},
+        "temperature": {"text": "—20+40"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_kbs_l_0_5",
+      "name": "КБС-Л-0,5",
+      "aliases": [],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Карманные батареи",
+      "params": {
+        "u_initial": {"v": 3.7, "unit": "В", "raw": "3,7"},
+        "u_end_warranty": {"v": 2.0, "unit": "В", "raw": "2,0"},
+        "shelf_life": {"v": 6.0, "unit": "мес", "raw": "6"},
+        "r_test_load": {"v": 10.0, "unit": "Ом", "raw": "10"},
+        "r_internal": {"min": 1.0, "max": 1.15, "unit": "Ом", "raw": "1—1,15"},
+        "mass": {"v": 0.15, "unit": "кг", "raw": "0,15"},
+        "temperature": {"text": "—10+50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_sbs_u_6",
+      "name": "СБС-У-6",
+      "aliases": ["6,15-ПМЦ-У-48"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Специальные батареи",
+      "params": {
+        "u_initial": {"v": 6.15, "unit": "В", "raw": "6,15"},
+        "u_end_warranty": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "shelf_life": {"v": 12.0, "unit": "мес", "raw": "12"},
+        "r_test_load": {"v": 40.0, "unit": "Ом", "raw": "40"},
+        "r_internal": {"min": 1.5, "max": 2.0, "unit": "Ом", "raw": "1,5—2,0"},
+        "mass": {"v": 0.25, "unit": "кг", "raw": "0,25"},
+        "temperature": {"text": "-40+60"},
+        "u_after_6_months": {"v": 6.0, "unit": "В", "raw": "6,0"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ],
+      "corrections": [
+        {
+          "field": "aliases (new designation)",
+          "printed": "6,15-ГШЦ-У-48 (RPR-69.pdf, retyped)",
+          "corrected": "6,15-ПМЦ-У-48",
+          "evidence": "Original scan rpr69s sheet 40 (Table 11, p. 78)."
+        }
+      ]
+    },
+    {
+      "id": "bat_zs_u_30",
+      "name": "ЗС-У-30",
+      "aliases": ["1.66-ТМЦ-У-28"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Элементы",
+      "params": {
+        "u_initial": {"v": 1.66, "unit": "В", "raw": "1,66"},
+        "u_end_warranty": {"v": 1.52, "unit": "В", "raw": "1,52"},
+        "shelf_life": {"v": 18.0, "unit": "мес", "raw": "18"},
+        "r_test_load": {"v": 10.0, "unit": "Ом", "raw": "10"},
+        "r_internal": {"min": 0.2, "max": 0.5, "unit": "Ом", "raw": "0,2—0,5"},
+        "mass": {"v": 0.7, "unit": "кг", "raw": "0,70"},
+        "temperature": {"text": "—40+60"},
+        "u_after_6_months": {"v": 1.52, "unit": "В", "raw": "1,52"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_zs_l_30",
+      "name": "ЗС-Л-30",
+      "aliases": ["1.66-ТМЦ-28"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Элементы",
+      "params": {
+        "u_initial": {"v": 1.66, "unit": "В", "raw": "1,66"},
+        "u_end_warranty": {"v": 1.52, "unit": "В", "raw": "1,52"},
+        "shelf_life": {"v": 18.0, "unit": "мес", "raw": "18"},
+        "r_test_load": {"v": 10.0, "unit": "Ом", "raw": "10"},
+        "r_internal": {"min": 0.2, "max": 0.5, "unit": "Ом", "raw": "0,2-0,5"},
+        "mass": {"v": 0.7, "unit": "кг", "raw": "0,70"},
+        "temperature": {"text": "—20+60"},
+        "u_after_6_months": {"v": 1.52, "unit": "В", "raw": "1,52"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ]
+    },
+    {
+      "id": "bat_1_ks_u_3",
+      "name": "1КС-У-3",
+      "aliases": ["1,6-ФМЦ-У-3,2"],
+      "kind": "dry_battery",
+      "set": "rpr69",
+      "group": "Элементы",
+      "params": {
+        "u_initial": {"v": 1.6, "unit": "В", "raw": "1.60"},
+        "u_end_warranty": {"v": 1.42, "unit": "В", "raw": "1.42"},
+        "shelf_life": {"v": 12.0, "unit": "мес", "raw": "12"},
+        "r_test_load": {"v": 10.0, "unit": "Ом", "raw": "10"},
+        "r_internal": {"min": 0.2, "max": 0.5, "unit": "Ом", "raw": "0.2-0.5"},
+        "mass": {"v": 0.105, "unit": "кг", "raw": "0.105"},
+        "temperature": {"text": "—40+60"},
+        "u_after_6_months": {"v": 1.42, "unit": "В", "raw": "1.42"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": [77, 78], "table": "11", "kind": "table", "draft": "rpr69_t11_batarei"},
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "левая половина, печатная стр. 78",
+          "table": "11",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 40,
+          "locator": "правая половина, печатная стр. 79",
+          "table": "11",
+          "kind": "table"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "Internal resistance grows 2,0-2,5 times by the end of the warranty period (Table 11 note to column 8, sheet 78)."
+      ],
+      "corrections": [
+        {
+          "field": "aliases (new designation)",
+          "printed": "1.6–ФМЦ-У-3.2 (RPR-69.pdf, retyped)",
+          "corrected": "1,6-ФМЦ-У-3,2",
+          "evidence": "Original scan rpr69s sheet 40 (Table 11, p. 78)."
+        }
+      ]
+    },
+    {
+      "id": "acc_3st_60",
+      "name": "3СТ-60",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 6.0, "unit": "А", "raw": "6,0"},
+        "capacity_10h": {"v": 60.0, "unit": "А·ч", "raw": "60"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 180.0, "unit": "А", "raw": "180"},
+        "capacity_starter": {"v": 16.5, "unit": "А·ч", "raw": "16,5"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_70",
+      "name": "3СТ-70",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 7.0, "unit": "А", "raw": "7,0"},
+        "capacity_10h": {"v": 70.0, "unit": "А·ч", "raw": "70"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 210.0, "unit": "А", "raw": "210"},
+        "capacity_starter": {"v": 19.2, "unit": "А·ч", "raw": "19,2"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_84",
+      "name": "3СТ-84",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 8.4, "unit": "А", "raw": "8,4"},
+        "capacity_10h": {"v": 84.0, "unit": "А·ч", "raw": "84"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 250.0, "unit": "А", "raw": "250"},
+        "capacity_starter": {"v": 22.8, "unit": "А·ч", "raw": "22,8"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_98",
+      "name": "3СТ-98",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 9.8, "unit": "А", "raw": "9,8"},
+        "capacity_10h": {"v": 98.0, "unit": "А·ч", "raw": "98"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 295.0, "unit": "А", "raw": "295"},
+        "capacity_starter": {"v": 27.0, "unit": "А·ч", "raw": "27,0"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_112",
+      "name": "3СТ-112",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 11.2, "unit": "А", "raw": "11,2"},
+        "capacity_10h": {"v": 112.0, "unit": "А·ч", "raw": "112"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 335.0, "unit": "А", "raw": "335"},
+        "capacity_starter": {"v": 30.7, "unit": "А·ч", "raw": "30,7"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_126",
+      "name": "3СТ-126",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 12.6, "unit": "А", "raw": "12,6"},
+        "capacity_10h": {"v": 126.0, "unit": "А·ч", "raw": "126"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 380.0, "unit": "А", "raw": "380"},
+        "capacity_starter": {"v": 34.8, "unit": "А·ч", "raw": "34,8"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_3st_135",
+      "name": "3СТ-135",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 13.5, "unit": "А", "raw": "13,5"},
+        "capacity_10h": {"v": 135.0, "unit": "А·ч", "raw": "135"},
+        "u_10h": {"v": 6.0, "unit": "В", "raw": "6,0"},
+        "i_starter": {"v": 405.0, "unit": "А", "raw": "405"},
+        "capacity_starter": {"v": 37.1, "unit": "А·ч", "raw": "37,1"},
+        "u_starter": {"v": 4.5, "unit": "В", "raw": "4,5"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_6st_54",
+      "name": "6СТ-54",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 5.4, "unit": "А", "raw": "5,4"},
+        "capacity_10h": {"v": 54.0, "unit": "А·ч", "raw": "54"},
+        "u_10h": {"v": 12.0, "unit": "В", "raw": "12,0"},
+        "i_starter": {"v": 160.0, "unit": "А", "raw": "160"},
+        "capacity_starter": {"v": 14.6, "unit": "А·ч", "raw": "14,6"},
+        "u_starter": {"v": 9.0, "unit": "В", "raw": "9,0"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_6st_68",
+      "name": "6СТ-68",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 6.8, "unit": "А", "raw": "6,8"},
+        "capacity_10h": {"v": 68.0, "unit": "А·ч", "raw": "68"},
+        "u_10h": {"v": 12.0, "unit": "В", "raw": "12,0"},
+        "i_starter": {"v": 250.0, "unit": "А", "raw": "250"},
+        "capacity_starter": {"v": 18.7, "unit": "А·ч", "raw": "18,7"},
+        "u_starter": {"v": 9.0, "unit": "В", "raw": "9,0"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°)."
+      ]
+    },
+    {
+      "id": "acc_6st_128",
+      "name": "6СТ-128",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "params": {
+        "i_10h": {"v": 11.2, "unit": "А", "raw": "11,2"},
+        "capacity_10h": {"v": 112.0, "unit": "А·ч", "raw": "112"},
+        "u_10h": {"v": 12.0, "unit": "В", "raw": "12,0"},
+        "i_starter": {"v": 360.0, "unit": "А", "raw": "360"},
+        "capacity_starter": {"v": 30.0, "unit": "А·ч", "raw": "30,0"},
+        "u_starter": {"v": 9.0, "unit": "В", "raw": "9,0"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 81, "kind": "table", "draft": "rpr69_t_akkumulyatory", "table": "14"},
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "117",
+          "kind": "text"
+        },
+        {"book": "rpr69p", "locator": "стр. 84", "table": "14", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 14 checked against the user's photo of the printed page 84: identical (title 'Таблица 14', 10-hour mode at electrolyte +30°).",
+        "6СТ-128: the original also prints 11,2 А and 112 А·ч. Not an error: the other rows use the 10-hour capacity as the number in the name, this one the 20-hour capacity; 10-hour capacity is about 0,88-0,9 of the 20-hour one (ИР 3012165-0302-94 Table 6.2: 6СТ-190 190/170, 6СТ-132 132/120, 6СТ-55 55/50), 128 x 0,875 = 112. Values used as printed."
+      ]
+    },
+    {
+      "id": "ps_ab_0_5_p_30",
+      "name": "АБ-0,5-П/30",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 30.0, "unit": "В", "raw": "30"},
+        "i_nom": {"v": 16.7, "unit": "А", "raw": "16,7"},
+        "power": {"v": 0.5, "unit": "кВт", "raw": "0,5"},
+        "agregate": {"text": "АБ-0,5-П/30"},
+        "current_kind": {"text": "dc"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_1_vo",
+      "name": "ЭСБ-1-ВО",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 5.5, "unit": "А", "raw": "5,5"},
+        "power": {"v": 1.0, "unit": "кВт", "raw": "1,0"},
+        "agregate": {"text": "АБ-1-0/230"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 50, "unit": "Гц", "raw": "50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_2_vo",
+      "name": "ЭСБ-2-ВО",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 11.0, "unit": "А", "raw": "11,0"},
+        "power": {"v": 2.0, "unit": "кВт", "raw": "2"},
+        "agregate": {"text": "АБ-2-0/230"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 50, "unit": "Гц", "raw": "50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_4_vo",
+      "name": "ЭСБ-4-ВО",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 22.0, "unit": "А", "raw": "22,0"},
+        "power": {"v": 4.0, "unit": "кВт", "raw": "4"},
+        "agregate": {"text": "АБ-4-0/230"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 50, "unit": "Гц", "raw": "50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esd_10_vo",
+      "name": "ЭСД-10-ВО",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 31.5, "unit": "А", "raw": "31,5"},
+        "power": {"v": 10.0, "unit": "кВт", "raw": "10"},
+        "agregate": {"text": "АД-10-Т/230"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 50, "unit": "Гц", "raw": "50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esd_20_vo",
+      "name": "ЭСД-20-ВО",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 63.0, "unit": "А", "raw": "63,0"},
+        "power": {"v": 20.0, "unit": "кВт", "raw": "20"},
+        "agregate": {"text": "АД-20-Т/230"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 50, "unit": "Гц", "raw": "50"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_2_vz",
+      "name": "ЭСБ-2-ВЗ",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 115.0, "unit": "В", "raw": "115"},
+        "i_nom": {"v": 17.4, "unit": "А", "raw": "17,4"},
+        "power": {"v": 2.0, "unit": "кВт", "raw": "2"},
+        "agregate": {"text": "АБ-2-П/115"},
+        "current_kind": {"text": "dc"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_4_vz",
+      "name": "ЭСБ-4-ВЗ",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 115.0, "unit": "В", "raw": "115"},
+        "i_nom": {"v": 34.8, "unit": "А", "raw": "34,8"},
+        "power": {"v": 4.0, "unit": "кВт", "raw": "4"},
+        "agregate": {"text": "АБ-4-П/115"},
+        "current_kind": {"text": "dc"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_4_il",
+      "name": "ЭСБ-4-ИЛ",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 12.6, "unit": "А", "raw": "12,6"},
+        "power": {"v": 4.0, "unit": "кВт", "raw": "4"},
+        "agregate": {"text": "АБ-4-Т/230-Ч/200"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 200, "unit": "Гц", "raw": "200"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "ps_esb_4_id",
+      "name": "ЭСБ-4-ИД",
+      "kind": "power_station",
+      "set": "rpr69",
+      "params": {
+        "u": {"v": 230.0, "unit": "В", "raw": "230"},
+        "i_nom": {"v": 12.6, "unit": "А", "raw": "12,6"},
+        "power": {"v": 4.0, "unit": "кВт", "raw": "4"},
+        "agregate": {"text": "АБ-4-Т/230-Ч/200"},
+        "current_kind": {"text": "ac"},
+        "frequency": {"v": 200, "unit": "Гц", "raw": "200"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "table": "15", "kind": "table", "draft": "rpr69_t15_elstancii"},
+        {"book": "rpr69p", "locator": "стр. 85", "table": "15", "kind": "table"}
+      ],
+      "status": "checked",
+      "notes": ["Table 15 checked against the user's photo of the printed page 85: identical."],
+      "corrections": [
+        {
+          "field": "params.i_nom unit",
+          "printed": "в (only in the retyped RPR-69.pdf)",
+          "corrected": "А",
+          "evidence": "The printed original (user's photo of p. 85) has 'Номинальный ток, а'."
+        }
+      ]
+    },
+    {
+      "id": "mains_dc_110",
+      "name": "Сеть постоянного тока 110 В",
+      "kind": "mains",
+      "set": "rpr69",
+      "params": {"u": {"v": 110, "unit": "В", "raw": "110"}, "current_kind": {"text": "dc"}},
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "article": "96", "kind": "text"},
+        {"book": "rpr69p", "locator": "стр. 85", "article": "96", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": ["Art. 96: these networks allow any connection scheme of art. 109. No current limit is given."]
+    },
+    {
+      "id": "mains_dc_220",
+      "name": "Сеть постоянного тока 220 В",
+      "kind": "mains",
+      "set": "rpr69",
+      "params": {"u": {"v": 220, "unit": "В", "raw": "220"}, "current_kind": {"text": "dc"}},
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "article": "96", "kind": "text"},
+        {"book": "rpr69p", "locator": "стр. 85", "article": "96", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": ["Art. 96: these networks allow any connection scheme of art. 109. No current limit is given."]
+    },
+    {
+      "id": "mains_ac_127",
+      "name": "Сеть переменного тока 127 В",
+      "kind": "mains",
+      "set": "rpr69",
+      "params": {"u": {"v": 127, "unit": "В", "raw": "127"}, "current_kind": {"text": "ac"}},
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "article": "96", "kind": "text"},
+        {"book": "rpr69p", "locator": "стр. 85", "article": "96", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": ["Art. 96: these networks allow any connection scheme of art. 109. No current limit is given."]
+    },
+    {
+      "id": "mains_ac_220",
+      "name": "Сеть переменного тока 220 В",
+      "kind": "mains",
+      "set": "rpr69",
+      "params": {"u": {"v": 220, "unit": "В", "raw": "220"}, "current_kind": {"text": "ac"}},
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "article": "96", "kind": "text"},
+        {"book": "rpr69p", "locator": "стр. 85", "article": "96", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": ["Art. 96: these networks allow any connection scheme of art. 109. No current limit is given."]
+    },
+    {
+      "id": "mains_ac_380",
+      "name": "Сеть переменного тока 380 В",
+      "kind": "mains",
+      "set": "rpr69",
+      "params": {"u": {"v": 380, "unit": "В", "raw": "380"}, "current_kind": {"text": "ac"}},
+      "limits": [],
+      "sources": [
+        {"book": "rpr69", "sheet": 82, "article": "96", "kind": "text"},
+        {"book": "rpr69p", "locator": "стр. 85", "article": "96", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": ["Art. 96: these networks allow any connection scheme of art. 109. No current limit is given."]
+    },
+    {
+      "id": "acc_6st_190",
+      "name": "6СТ-190",
+      "aliases": ["6СТ-190ТМ", "6СТ-190А", "6СТ-190ЭМ"],
+      "kind": "accumulator",
+      "set": "web",
+      "params": {
+        "u_nominal": {"v": 12, "unit": "В", "raw": "12"},
+        "capacity_20h": {"v": 190, "unit": "А·ч", "raw": "190"},
+        "capacity_10h": {"v": 170, "unit": "А·ч", "raw": "170"},
+        "i_starter": {"v": 570, "unit": "А", "raw": "570"},
+        "u_starter_end": {"v": 9.0, "unit": "В", "raw": "9,0"},
+        "i_10h": {"v": 17.0, "unit": "А", "raw": "C10 / 10 = 170 / 10 = 17,0"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "ir_3012165_0302_94", "locator": "табл. 6.2, 6.4; разд. 2.3 п. 13", "kind": "table"},
+        {"book": "simanovich_ab", "sheet": [30, 31], "table": "1.1", "kind": "table"}
+      ],
+      "status": "derived",
+      "notes": [
+        "Starter current 570 А = 3·C20 (ИР 3012165-0302-94 Tables 6.2 and 6.4 agree; section 2.3 item 13: starter discharge 3·C20, at least 3 min, final 9,0 В for a 12 В battery).",
+        "Not in RPR-69 (the accumulator table on sheet 81 has 6СТ-54, 6СТ-68, 6СТ-128). Needed for Praktikum 1.4 variant 13.",
+        "i_10h is derived as C10 / 10 (10-hour mode: capacity over 10 hours); it is the I_src used in the calculation (user decision 2026-11-15, as RPR-69 art. 117)."
+      ]
+    },
+    {
+      "id": "acc_6st_75",
+      "name": "6СТ-75",
+      "aliases": ["6СТ-75ЭМ", "6СТ-75ТМ", "6СТ-75А"],
+      "kind": "accumulator",
+      "set": "web",
+      "params": {
+        "u_nominal": {"v": 12, "unit": "В", "raw": "12"},
+        "capacity_20h": {"v": 75, "unit": "А·ч", "raw": "75"},
+        "capacity_10h": {"v": 68, "unit": "А·ч", "raw": "68"},
+        "i_starter": {"v": 225, "unit": "А", "raw": "3·C20 = 3·75 = 225"},
+        "u_starter_end": {"v": 9.0, "unit": "В", "raw": "9,0"},
+        "i_10h": {"v": 6.8, "unit": "А", "raw": "C10 / 10 = 68 / 10 = 6,8"}
+      },
+      "limits": [],
+      "sources": [
+        {"book": "ir_3012165_0302_94", "locator": "табл. 6.2, 6.4; разд. 2.3 п. 13", "kind": "table"},
+        {"book": "simanovich_ab", "sheet": [30, 31], "table": "1.1", "kind": "table"}
+      ],
+      "status": "derived",
+      "notes": [
+        "Sources disagree on the starter current: rule 3·C20 = 225 А (ИР section 2.3 item 13), Table 6.4 255 А, Table 6.2 270 А (6СТ-75ЭМ). The starter current is reference only and no longer used in the calculation.",
+        "capacity_10h 68 А·ч is for 6СТ-75ЭМ (ИР Table 6.2).",
+        "Not in RPR-69. Needed for Praktikum 1.4 variant 6.",
+        "i_10h is derived as C10 / 10 (10-hour mode: capacity over 10 hours); it is the I_src used in the calculation (user decision 2026-11-15, as RPR-69 art. 117)."
+      ]
+    },
+    {
+      "id": "acc_5nkn_10",
+      "name": "5НКН-10",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 5.0, "unit": "шт", "raw": "5"},
+        "u_initial": {"v": 6.25, "unit": "В", "raw": "6,25"},
+        "capacity": {"v": 10.0, "unit": "А·ч", "raw": "10"},
+        "i_8h": {"v": 1.25, "unit": "А", "raw": "1,25"},
+        "u_8h_end": {"v": 5.0, "unit": "В", "raw": "5"},
+        "i_1h": {"v": 10.0, "unit": "А", "raw": "10"},
+        "u_1h_end": {"v": 2.5, "unit": "В", "raw": "2,5"},
+        "mass": {"v": 3.84, "unit": "кг", "raw": "3,84"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10nkn_22",
+      "name": "10НКН-22",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 22.0, "unit": "А·ч", "raw": "22"},
+        "i_8h": {"v": 2.75, "unit": "А", "raw": "2,75"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 22.0, "unit": "А", "raw": "22"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 21.0, "unit": "кг", "raw": "21,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_17nkn_22",
+      "name": "17НКН-22",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 17.0, "unit": "шт", "raw": "17"},
+        "u_initial": {"v": 21.25, "unit": "В", "raw": "21,25"},
+        "capacity": {"v": 22.0, "unit": "А·ч", "raw": "22"},
+        "i_8h": {"v": 2.75, "unit": "А", "raw": "2,75"},
+        "u_8h_end": {"v": 17.0, "unit": "В", "raw": "17"},
+        "i_1h": {"v": 22.0, "unit": "А", "raw": "22"},
+        "u_1h_end": {"v": 8.5, "unit": "В", "raw": "8,5"},
+        "mass": {"v": 35.0, "unit": "кг", "raw": "35,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_5nkn_45",
+      "name": "5НКН-45",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 5.0, "unit": "шт", "raw": "5"},
+        "u_initial": {"v": 6.25, "unit": "В", "raw": "6,25"},
+        "capacity": {"v": 45.0, "unit": "А·ч", "raw": "45"},
+        "i_8h": {"v": 5.65, "unit": "А", "raw": "5,65"},
+        "u_8h_end": {"v": 5.0, "unit": "В", "raw": "5"},
+        "i_1h": {"v": 45.0, "unit": "А", "raw": "45"},
+        "u_1h_end": {"v": 2.5, "unit": "В", "raw": "2,5"},
+        "mass": {"v": 17.0, "unit": "кг", "raw": "17,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10nkn_45",
+      "name": "10НКН-45",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 45.0, "unit": "А·ч", "raw": "45"},
+        "i_8h": {"v": 5.65, "unit": "А", "raw": "5,65"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 45.0, "unit": "А", "raw": "45"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 33.5, "unit": "кг", "raw": "33,5"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10nkn_60",
+      "name": "10НКН-60",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 60.0, "unit": "А·ч", "raw": "60"},
+        "i_8h": {"v": 7.5, "unit": "А", "raw": "7,5"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 60.0, "unit": "А", "raw": "60"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 56.0, "unit": "кг", "raw": "56,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10nkn_100",
+      "name": "10НКН-100",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Кадмиево-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 100.0, "unit": "А·ч", "raw": "100"},
+        "i_8h": {"v": 12.5, "unit": "А", "raw": "12,5"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 100.0, "unit": "А", "raw": "100"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 75.0, "unit": "кг", "raw": "75,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10zhn_22",
+      "name": "10ЖН-22",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 22.0, "unit": "А·ч", "raw": "22"},
+        "i_8h": {"v": 2.75, "unit": "А", "raw": "2,75"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 22.0, "unit": "А", "raw": "22"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 21.6, "unit": "кг", "raw": "21,6"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_17zhn_22",
+      "name": "17ЖН-22",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 17.0, "unit": "шт", "raw": "17"},
+        "u_initial": {"v": 21.25, "unit": "В", "raw": "21,25"},
+        "capacity": {"v": 22.0, "unit": "А·ч", "raw": "22"},
+        "i_8h": {"v": 2.75, "unit": "А", "raw": "2,75"},
+        "u_8h_end": {"v": 17.0, "unit": "В", "raw": "17"},
+        "i_1h": {"v": 22.0, "unit": "А", "raw": "22"},
+        "u_1h_end": {"v": 8.5, "unit": "В", "raw": "8,5"},
+        "mass": {"v": 36.0, "unit": "кг", "raw": "36,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_5zhn_45",
+      "name": "5ЖН-45",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 5.0, "unit": "шт", "raw": "5"},
+        "u_initial": {"v": 6.25, "unit": "В", "raw": "6,25"},
+        "capacity": {"v": 45.0, "unit": "А·ч", "raw": "45"},
+        "i_8h": {"v": 5.65, "unit": "А", "raw": "5,65"},
+        "u_8h_end": {"v": 5.0, "unit": "В", "raw": "5"},
+        "i_1h": {"v": 45.0, "unit": "А", "raw": "45"},
+        "u_1h_end": {"v": 2.5, "unit": "В", "raw": "2,5"},
+        "mass": {"v": 17.6, "unit": "кг", "raw": "17,6"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10zhn_45",
+      "name": "10ЖН-45",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 45.0, "unit": "А·ч", "raw": "45"},
+        "i_8h": {"v": 5.65, "unit": "А", "raw": "5,65"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 45.0, "unit": "А", "raw": "45"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 34.8, "unit": "кг", "raw": "34,8"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10zhn_60",
+      "name": "10ЖН-60",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 60.0, "unit": "А·ч", "raw": "60"},
+        "i_8h": {"v": 7.5, "unit": "А", "raw": "7,5"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 60.0, "unit": "А", "raw": "60"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 57.8, "unit": "кг", "raw": "57,8"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    },
+    {
+      "id": "acc_10zhn_100",
+      "name": "10ЖН-100",
+      "kind": "accumulator",
+      "set": "rpr69",
+      "group": "Железо-никелевые",
+      "params": {
+        "cells": {"v": 10.0, "unit": "шт", "raw": "10"},
+        "u_initial": {"v": 12.5, "unit": "В", "raw": "12,5"},
+        "capacity": {"v": 100.0, "unit": "А·ч", "raw": "100"},
+        "i_8h": {"v": 12.5, "unit": "А", "raw": "12,5"},
+        "u_8h_end": {"v": 10.0, "unit": "В", "raw": "10"},
+        "i_1h": {"v": 100.0, "unit": "А", "raw": "100"},
+        "u_1h_end": {"v": 5.0, "unit": "В", "raw": "5,0"},
+        "mass": {"v": 78.0, "unit": "кг", "raw": "78,0"}
+      },
+      "limits": [],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "правая половина, печатная стр. 83",
+          "table": "13",
+          "kind": "table",
+          "draft": "rpr69_t13_shchelochnye"
+        }
+      ],
+      "status": "verified",
+      "notes": [
+        "Alkaline battery, RPR-69 Table 13 (original scan only: page 83 is missing in RPR-69.pdf).",
+        "Table 13 note: iron-nickel batteries are not recommended above +30 °C or below -25 °C.",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 13."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "format": "evs-catalog/1",
+  "category": "detonators",
+  "description": "Electric detonators: electrical parameters used by the ЭВС calculation. ЭДЗД and ЭДКЗ are not listed: the books give no electrical parameters for them (vzd2019 sheet 53, text only).",
+  "items": [
+    {
+      "id": "edp",
+      "name": "ЭДП (ЭДП-р)",
+      "aliases": ["ЭДП", "ЭДП-р"],
+      "kind": "detonator",
+      "bridge": "платино-иридиевый",
+      "params": {
+        "cap": {"text": "КД №8-А"},
+        "bridge_diameter": {"v": 0.025, "unit": "мм", "raw": "0,025"},
+        "lead_length": {"v": 1, "unit": "м", "raw": "1"},
+        "r_cold": {"min": 0.9, "max": 1.5, "unit": "Ом", "raw": "0,9-1,5"},
+        "r_calc": {"v": 2.5, "unit": "Ом", "raw": "2,5"},
+        "i_safe": {"v": 0.18, "unit": "А", "raw": "0,18"},
+        "i_min_ignition": {"v": 0.4, "unit": "А", "raw": "0,4"},
+        "i_calc_single_dc": {"v": 0.5, "unit": "А", "raw": "0,5"},
+        "i_calc_single_ac": {"v": 1, "unit": "А", "raw": "1"},
+        "i_calc_group_dc": {"v": 1, "unit": "А", "raw": "1"},
+        "i_calc_group_ac": {"v": 1.5, "unit": "А", "raw": "1,5"}
+      },
+      "sources": [
+        {"book": "vzd2019", "sheet": [51, 52], "table": "1.2", "kind": "table", "draft": "vzd2019_t1_2_ed"},
+        {"book": "rpr69", "sheet": 57, "article": "66", "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Table 1.2 and RPR art. 66 agree on r_cold, r_calc (with 1 m leads, heated state), i_min_ignition, single-ED currents and i_safe.",
+        "RPR art. 66 gives the bridge diameter as 22-26 micron; table 1.2 gives 0,025 mm."
+      ]
+    },
+    {
+      "id": "ed8",
+      "name": "ЭД-8Э, ЭД-8Ж",
+      "aliases": ["ЭД-8-Э", "ЭД-8-Ж", "ЭД-8Э", "ЭД-8Ж"],
+      "kind": "detonator",
+      "bridge": "нихромовый",
+      "params": {
+        "cap": {"text": "№8-М или №8-С"},
+        "bridge_diameter": {"v": 0.03, "unit": "мм", "raw": "0,03"},
+        "lead_length": {"v": 1.5, "unit": "м", "raw": "1,5"},
+        "r_cold": {"min": 1.6, "max": 4.2, "unit": "Ом", "raw": "1,6-4,2"},
+        "r_calc": {"v": 4, "unit": "Ом", "raw": "4"},
+        "i_safe": {"v": 0.18, "unit": "А", "raw": "0,18"},
+        "i_min_ignition": {"v": 0.4, "unit": "А", "raw": "0,4"},
+        "i_calc_single_dc": {"v": 0.5, "unit": "А", "raw": "0,5"},
+        "i_calc_single_ac": {"v": 1.3, "unit": "А", "raw": "1,3"},
+        "i_calc_group_dc": {"v": 1, "unit": "А", "raw": "1"},
+        "i_calc_group_ac": {"v": 2.5, "unit": "А", "raw": "2,5"}
+      },
+      "sources": [
+        {"book": "vzd2019", "sheet": [51, 52], "table": "1.2", "kind": "table", "draft": "vzd2019_t1_2_ed"},
+        {"book": "rpr69", "sheet": 361, "table": "44", "kind": "table"}
+      ],
+      "status": "conflict",
+      "notes": [
+        "The book gives ЭД-8Э and ЭД-8Ж as one shared column.",
+                "RPR-69 Appendix 3, Table 44 (sheet 361, retyped page with a garbled table) gives cold resistance 1,6-4,2 Ом for ЭД-8-Э but 2,9-9,5 Ом for ЭД-8-Ж. The 2019 textbook gives 1,6-4,2 Ом for both. The calculation uses r_calc = 4 Ом from the textbook; the cold-resistance range for ЭД-8-Ж is unresolved."
+      ]
+    }
+  ]
+}

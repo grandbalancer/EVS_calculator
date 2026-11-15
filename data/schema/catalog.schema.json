@@ -1,0 +1,228 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "evs-catalog/1",
+  "title": "Built-in and user catalog file (ЭВС data)",
+  "description": "One file per category in data/builtin/. Values are stored in the units printed in the book (field 'unit'); the core converts to SI on load. Every item cites its sources. tools/validate_data.py implements these rules without third-party libraries.",
+  "type": "object",
+  "required": [
+    "format",
+    "category",
+    "items"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "evs-catalog/1"
+    },
+    "category": {
+      "enum": [
+        "books",
+        "detonators",
+        "wires",
+        "sources",
+        "method"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/item"
+      }
+    }
+  },
+  "definitions": {
+    "status": {
+      "description": "verified: the user checked it against the printed page. checked: born-digital text, cross-checked by Claude against the page image or a second book. transcribed: typed by hand from a scan, waiting for the user. conflict: books disagree, see notes. derived: computed from book values (rule in notes).",
+      "enum": [
+        "verified",
+        "checked",
+        "transcribed",
+        "conflict",
+        "derived"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "book"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "book": {
+          "description": "id from books.json: a PDF book (cite 'sheet') or a web source (cite 'locator')",
+          "type": "string"
+        },
+        "sheet": {
+          "description": "PDF sheet number, starting at 1. Never a printed page.",
+          "oneOf": [
+            {
+              "type": "integer",
+              "minimum": 1
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          ]
+        },
+        "table": {
+          "type": "string"
+        },
+        "article": {
+          "description": "RPR-69 article (статья) number",
+          "type": "string"
+        },
+        "formula": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "table",
+            "text",
+            "example",
+            "figure"
+          ]
+        },
+        "draft": {
+          "description": "data/draft/{tables|manual}/<draft>.csv used for cross-checking numbers",
+          "type": "string"
+        },
+        "locator": {
+          "description": "For web sources: table, clause, formula or slide",
+          "type": "string"
+        }
+      }
+    },
+    "quantity": {
+      "description": "Exactly one of: v (single value), min+max (range), max (upper bound, 'до 250'), min (lower bound, 'не менее 25'), v+tol (520±20). raw is the text as printed, decimal comma kept. Non-numeric params use {\"text\": \"...\"} instead.",
+      "type": "object",
+      "required": [
+        "unit",
+        "raw"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "type": "number"
+        },
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        },
+        "tol": {
+          "type": "number"
+        },
+        "unit": {
+          "enum": [
+            "Ом",
+            "Ом/км",
+            "А",
+            "В",
+            "м",
+            "мм",
+            "мм²",
+            "кг",
+            "кг/км",
+            "мкФ",
+            "мДж",
+            "кВт",
+            "Гц",
+            "А·ч",
+            "мес",
+            "лет",
+            "°C",
+            "шт",
+            "пар",
+            "раз",
+            "1"
+          ]
+        },
+        "raw": {
+          "type": "string"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "sources",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "name": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "kind": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/source"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/status"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "corrections": {
+          "description": "Errors found in the source and fixed in this record: what was printed, what is used, why.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "field",
+              "printed",
+              "corrected",
+              "evidence"
+            ],
+            "properties": {
+              "field": {
+                "type": "string"
+              },
+              "printed": {
+                "type": "string"
+              },
+              "corrected": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "set": {
+          "description": "sources only: rpr69 | vzd2019 | web",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

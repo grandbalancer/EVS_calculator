@@ -1,0 +1,471 @@
+{
+  "format": "evs-catalog/1",
+  "category": "method",
+  "description": "Constants and rules of the ЭВС calculation, each with its citation. Formulas are written in plain text with the book's symbols; docs/methods/evs.md explains the order of steps. The solver reads constants from here instead of hard-coding them.",
+  "items": [
+    {
+      "id": "wire_resistance",
+      "name": "Сопротивление провода",
+      "formula": "r = L * r_pr / 1000",
+      "symbols": {"L": "длина провода, м", "r_pr": "сопротивление 1 км провода, Ом"},
+      "sources": [{"book": "vzd2019", "sheet": 241, "kind": "text"}, {"book": "prakt2023", "sheet": 7, "kind": "text"}],
+      "status": "checked"
+    },
+    {
+      "id": "r_series",
+      "name": "Общее сопротивление: последовательная сеть",
+      "formula": "R = r_m + r_uch + m * r_d",
+      "symbols": {
+        "r_m": "магистральные провода",
+        "r_uch": "все участковые провода",
+        "m": "число ЭД",
+        "r_d": "расчётное сопротивление ЭД"
+      },
+      "sources": [
+        {"book": "rpr69", "sheet": 97, "article": "110", "formula": "(3)", "kind": "text"},
+        {"book": "vzd2019", "sheet": 242, "kind": "text"},
+        {"book": "prakt2023", "sheet": 9, "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "r_pairs",
+      "name": "Общее сопротивление: последовательное соединение групп из попарно-параллельных ЭД",
+      "formula": "R = r_m + r_uch + m_p * r_d / 2",
+      "symbols": {"m_p": "число пар ЭД"},
+      "sources": [
+        {"book": "rpr69", "sheet": 98, "article": "111", "formula": "(5)", "kind": "text"},
+        {"book": "vzd2019", "sheet": 243, "kind": "text"},
+        {"book": "prakt2023", "sheet": 11, "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "r_parallel",
+      "name": "Общее сопротивление: параллельно-пучковая сеть",
+      "formula": "R = r_m + (r_uch + r_d) / n",
+      "symbols": {
+        "n": "число ветвей",
+        "r_uch": "сопротивление участкового провода ОДНОЙ ветви (L_uch = L_v, длина одной ветви)"
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 51,
+          "locator": "левая половина, печатная стр. 102",
+          "article": "112",
+          "formula": "(7)",
+          "kind": "text"
+        },
+        {"book": "vzd2019", "sheet": [243, 244], "kind": "text"},
+        {"book": "prakt2023", "sheet": [13, 14], "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "RPR art. 112 formula (7) (original scan): r_uch belongs to ONE branch.",
+        "Branches must have about equal length and resistance."
+      ]
+    },
+    {
+      "id": "r_mixed",
+      "name": "Общее сопротивление: смешанная сеть",
+      "formula": "R = r_m + (r_uch + m * r_d) / n",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 51,
+          "locator": "правая половина, печатная стр. 103",
+          "article": "113",
+          "formula": "(8)",
+          "kind": "text"
+        },
+        {"book": "rpr69", "sheet": 57, "article": "67", "kind": "text"},
+        {"book": "vzd2019", "sheet": [240, 241], "kind": "text"},
+        {
+          "book": "lukyanov_vzr",
+          "locator": "формула (4.12), (4.13): R_общ = R_м + [R_с + R_у + n2(R_эд + R_к)]/m1; I >= m·I_г",
+          "kind": "text"
+        },
+        {
+          "book": "pgups_evs_slides",
+          "locator": "слайд «Расчёт ЭВС со смешанным соединением»: R = Rм + (Rуч + mRд)/n, Rуч относится ко всем участкам одной ветви",
+          "kind": "text"
+        }
+      ],
+      "status": "checked",
+      "notes": [
+        "RPR art. 113 formula (8) (original scan, p. 103): r_uch is the resistance of ALL section wires of one branch; I = n*i by formula (6) with i = 1 А per branch (art. 67). Open sources (Лукьянов (4.12)-(4.13), ПГУПС slide) agree.",
+        "Same number m of detonators in every branch (art. 113). Otherwise only the general circuit solver applies.",
+        "With n = 1 it reduces to the series formula, with m = 1 to the parallel-bundle formula (7)."
+      ],
+      "symbols": {
+        "n": "число параллельных ветвей",
+        "m": "число последовательно соединённых ЭД в ветви",
+        "r_uch": "сопротивление участковых (и соединительных) проводов ОДНОЙ ветви"
+      }
+    },
+    {
+      "id": "u_required",
+      "name": "Потребное напряжение",
+      "formula": "U = I * R",
+      "sources": [
+        {"book": "rpr69", "sheet": 97, "article": "110", "formula": "(4)", "kind": "text"},
+        {"book": "vzd2019", "sheet": 241, "kind": "text"},
+        {"book": "prakt2023", "sheet": 7, "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "i_series",
+      "name": "Потребный ток: последовательная сеть",
+      "params": {"dc": {"v": 1.0, "unit": "А", "raw": "1,0"}, "ac": {"v": 1.5, "unit": "А", "raw": "1,5"}},
+      "sources": [
+        {"book": "rpr69", "sheet": 57, "article": "67", "kind": "text"},
+        {"book": "vzd2019", "sheet": 242, "kind": "text"},
+        {"book": "prakt2023", "sheet": 9, "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "Matches the group current of Table 1.2 for ЭДП (1 / 1,5 А); for ЭД-8 Table 1.2 gives 1 / 2,5 А. The method text does not distinguish detonator types."
+      ]
+    },
+    {
+      "id": "i_pairs",
+      "name": "Потребный ток: попарно-параллельная сеть",
+      "params": {"dc": {"v": 1.5, "unit": "А", "raw": "1,5"}, "ac": {"v": 2.0, "unit": "А", "raw": "2"}},
+      "sources": [
+        {"book": "rpr69", "sheet": 98, "article": "111", "kind": "text"},
+        {"book": "vzd2019", "sheet": 243, "kind": "text"},
+        {"book": "prakt2023", "sheet": 11, "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "i_parallel",
+      "name": "Потребный ток: параллельно-пучковая сеть",
+      "formula": "I = n * i",
+      "symbols": {"i": "расчётный ток одиночного ЭД (detonators.json: i_calc_single_dc / i_calc_single_ac)"},
+      "sources": [
+        {"book": "rpr69", "sheet": [57, 98], "article": "67, 112", "formula": "(6)", "kind": "text"},
+        {"book": "vzd2019", "sheet": 244, "kind": "text"},
+        {"book": "prakt2023", "sheet": [13, 14], "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "i_mixed",
+      "name": "Потребный ток: смешанная сеть",
+      "formula": "I = n_branches * I_series",
+      "sources": [{"book": "rpr69", "sheet": 57, "article": "67", "kind": "text"}],
+      "status": "checked",
+      "notes": [
+        "Current in each branch as for a series network (1,0 / 1,5 А).",
+        "Лукьянов (4.13): I >= m·I_г, the same rule."
+      ]
+    },
+    {
+      "id": "low_current_restriction",
+      "name": "Ограничение для слаботочных источников",
+      "rule": "Sources that give up to 1-1,5 А: parallel and mixed schemes are not allowed.",
+      "sources": [{"book": "rpr69", "sheet": 57, "article": "67", "kind": "text"}],
+      "status": "checked"
+    },
+    {
+      "id": "same_type_in_series",
+      "name": "Один тип и одна партия ЭД в последовательной сети",
+      "rule": "Detonators of different types or batches must not be mixed in one series network.",
+      "sources": [
+        {"book": "rpr69", "sheet": 96, "article": "109", "kind": "text"},
+        {"book": "vzd2019", "sheet": 240, "kind": "text"}
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "capacitor_machine_check",
+      "name": "Проверка конденсаторной машинки",
+      "rule": "For capacitor machines only two parameters are checked: total resistance R and the number of detonators (pairs) for the chosen scheme, against the machine table.",
+      "sources": [
+        {"book": "vzd2019", "sheet": [242, 244], "kind": "text"},
+        {"book": "prakt2023", "sheet": 8, "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "The Praktikum (sheets 12, 14) also prints required vs nominal voltage in the comparison table; the verdict rests on count and resistance."
+      ]
+    },
+    {
+      "id": "source_battery_sizing",
+      "name": "Подбор числа источников (кроме конденсаторных машинок)",
+      "formula": "series: m >= U / U_src (10);  parallel: n >= I / I_src (11)",
+      "rule": "If the source gives the current but not the voltage, connect k equal sources in series; if it does not give the current, connect n in parallel.",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 52,
+          "locator": "правая половина, печатная стр. 105",
+          "article": "117",
+          "formula": "(10)",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "левая половина, печатная стр. 106",
+          "article": "118",
+          "formula": "(11)",
+          "kind": "text"
+        },
+        {"book": "prakt2023", "sheet": 8, "kind": "text"}
+      ],
+      "status": "checked",
+      "notes": [
+        "User decision 2026-11-15 (revised): for accumulators I_src is the long-mode discharge current, as in RPR-69 art. 117 (3СТ-60: 10-hour current 6,0 А from Table 14): acid batteries i_10h; alkaline batteries (Table 13, no 10-hour column) i_8h; web batteries 6СТ-75 / 6СТ-190 i_10h = C10 / 10.",
+        "U_src for accumulators: the voltage of the same mode (Table 14: u_10h; Table 13: u_initial at the start, u_8h_end at the end of discharge). The starter / 1-hour values are kept for reference only."
+      ]
+    },
+    {
+      "id": "battery_count_table",
+      "name": "Потребное количество батарей 70-АМЦГ / 100-АМЦГ (табл. 12)",
+      "rows": [
+        {
+          "max_series_ed": 10,
+          "amcg70": {"count": 1, "connection": null},
+          "amcg100": {"count": 1, "connection": null}
+        },
+        {
+          "max_series_ed": 20,
+          "amcg70": {"count": 2, "connection": "series"},
+          "amcg100": {"count": 1, "connection": null}
+        },
+        {
+          "max_series_ed": 30,
+          "amcg70": {"count": 2, "connection": "series"},
+          "amcg100": {"count": 2, "connection": "series"}
+        }
+      ],
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 41,
+          "locator": "левая половина, печатная стр. 80",
+          "table": "12",
+          "kind": "table"
+        },
+        {
+          "book": "rpr69",
+          "sheet": 79,
+          "table": "12",
+          "kind": "table",
+          "draft": "rpr69_t12_batarei_kolichestvo"
+        },
+        {"book": "konspekt2021", "sheet": 39, "kind": "text"}
+      ],
+      "status": "verified",
+      "notes": [
+        "Condition (konspekt2021 sheet 39, same table): the table is made for a network of single-core wire with a total length up to 1000 м. In RPR-69.pdf the sentence before Table 12 is not on sheet 79 (probably on a page lost in the retyped edition).",
+        "Verified by the user against the printed page in tmp/review.html (2026-11-15): Table 12."
+      ],
+      "applies_if": {"wire_cores": 1, "max_total_wire_length_m": 1000}
+    },
+    {
+      "id": "line_margin",
+      "name": "Запас длины проводов (слабина)",
+      "params": {
+        "range": {"min": 10, "max": 15, "unit": "1", "raw": "10-15 %"},
+        "default_factor": {"v": 1.125, "unit": "1", "raw": "1,125 (12,5 %)"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 54,
+          "locator": "правая половина, печатная стр. 109",
+          "article": "121",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 56,
+          "locator": "правая половина, печатная стр. 113",
+          "article": "123",
+          "kind": "text"
+        },
+        {"book": "vzd2019", "sheet": 245, "kind": "text"},
+        {"book": "prakt2023", "sheet": [9, 12], "kind": "example"}
+      ],
+      "status": "checked",
+      "notes": [
+        "RPR art. 121 (p. 109): wires are laid with 10-15 % slack of the distance between connected points; art. 123 (p. 113): wire pieces are cut 10-15 % longer than nominal.",
+        "User decision 2026-11-15: the margin is applied to main and to section wires only when the user switches it on; the factor is editable, default 1,125."
+      ],
+      "apply": {"main": "user option, default off", "section": "user option, default off"}
+    },
+    {
+      "id": "safety_node_min_distance",
+      "name": "Расстояние от узла безопасности до первого заряда",
+      "params": {"min_distance": {"min": 25, "unit": "м", "raw": "не менее 25"}},
+      "sources": [{"book": "prakt2023", "sheet": 12, "kind": "example"}],
+      "status": "checked",
+      "notes": [
+        "Problem 2 adds 25 m in the formula but says '50 м — длина проводов от узла безопасности до зарядов'; see tests/golden/evs_cases.json prakt2023_p2."
+      ]
+    },
+    {
+      "id": "gzu",
+      "name": "Грозозащитный прибор ГЗУ",
+      "formula": "R = r_m + r_uch + m * (r_d + r_g)",
+      "params": {
+        "r_coil": {"v": 10, "unit": "Ом", "raw": "около 10"},
+        "u_ignition": {"v": 60, "unit": "В", "raw": "60"}
+      },
+      "sources": [{"book": "rpr69", "sheet": [101, 102], "article": "126", "kind": "text"}],
+      "status": "checked",
+      "notes": ["One ГЗУ before each detonator."]
+    },
+    {
+      "id": "gzu_capacitor_check",
+      "name": "ГЗУ с машинками КПМ-1 и КПМ-2",
+      "formula": "U = 18750 / (r_m + r_uch + 12.5*m)  (17);  if U >= 60 В: r_add_min = 325 - (r_m + r_uch + 12.5*m)  (18)",
+      "rule": "U < 60 В: КПМ-1 / КПМ-2 usable without extra resistor. Otherwise add at least r_add_min to the main line, keeping the total within the machine limit.",
+      "sources": [{"book": "rpr69", "sheet": [103, 104], "article": "128", "formula": "(17), (18)", "kind": "text"}],
+      "status": "checked",
+      "notes": [
+        "(17) read from the page image; (18) from the text layer, matches the image layout. Only for КПМ-1 and КПМ-2."
+      ]
+    },
+    {
+      "id": "stepped_parallel_capacitor",
+      "name": "Ступенчатое присоединение ветвей при конденсаторных машинках",
+      "rule": "With capacitor machines, parallel branches may be attached to the main wires stepwise if adjacent branches are no more than 4-6 м apart. Calculated as art. 113; at most 4 parallel branches; equal number of detonators in every branch; total resistance within the parallel limits of Tables 7-9.",
+      "params": {
+        "max_branches": {"max": 4, "unit": "шт", "raw": "не более 4 (четырёх)"},
+        "max_spacing": {"min": 4, "max": 6, "unit": "м", "raw": "4—6"}
+      },
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 51,
+          "locator": "правая половина, печатная стр. 103",
+          "article": "114",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 52,
+          "locator": "левая половина, печатная стр. 104",
+          "article": "114",
+          "kind": "text"
+        }
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "source_selection",
+      "name": "Подбор источника тока (ст. 115)",
+      "rule": "ПМ-1: series only, check total R (<= 290 Ом). КПМ-1, КПМ-2: series, parallel or mixed per art. 76, 81, 114 (machine tables). Other sources: required U and I from art. 110-113. Power stations and mains: nominal characteristics. Accumulators, dry cells and batteries: art. 116-120.",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 52,
+          "locator": "левая половина, печатная стр. 104",
+          "article": "115",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 52,
+          "locator": "правая половина, печатная стр. 105",
+          "article": "115",
+          "kind": "text"
+        }
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "source_voltage_under_load",
+      "name": "Напряжение источника под нагрузкой (ст. 116)",
+      "formula": "U_src = E0 - I*R0  (9)",
+      "symbols": {
+        "E0": "ЭДС (свежие батареи: табл. 11, или вольтметр без нагрузки)",
+        "R0": "внутреннее сопротивление (ст. 92)"
+      },
+      "rule": "A source with U_src >= U and current >= I is suitable.",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 52,
+          "locator": "правая половина, печатная стр. 105",
+          "article": "116",
+          "formula": "(9)",
+          "kind": "text"
+        }
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "source_current_untested",
+      "name": "Ток сухих батарей без испытания (ст. 118)",
+      "formula": "I_src = E0 / (2*R0)  (12)",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "правая половина, печатная стр. 107",
+          "article": "118",
+          "formula": "(12)",
+          "kind": "text"
+        }
+      ],
+      "status": "checked"
+    },
+    {
+      "id": "source_mixed_battery",
+      "name": "Смешанное соединение источников (ст. 119-120)",
+      "formula": "N = m*n (13);  if U_src unknown: m >= 2*I*R/E0 (14), n >= 2*I*R0/E0 (15);  check I_bat = m*E0 / (R + m*R0/n) >= I (16)",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 53,
+          "locator": "правая половина, печатная стр. 107",
+          "article": "119",
+          "formula": "(13)",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 54,
+          "locator": "левая половина, печатная стр. 108",
+          "article": "120",
+          "formula": "(14)-(16)",
+          "kind": "text"
+        }
+      ],
+      "status": "checked",
+      "notes": ["The art. 119 example cites 'формула (14)' for N = m*n; it is formula (13)."]
+    },
+    {
+      "id": "r0_measurement",
+      "name": "Внутреннее сопротивление батареи (ст. 92)",
+      "formula": "by known current: R0 = (U1 - U2)/i  (1);  by known external resistance: R0 = (U1 - U2)/U2 * R  (2)",
+      "sources": [
+        {
+          "book": "rpr69s",
+          "sheet": 41,
+          "locator": "правая половина, печатная стр. 81",
+          "article": "92",
+          "formula": "(1)",
+          "kind": "text"
+        },
+        {
+          "book": "rpr69s",
+          "sheet": 42,
+          "locator": "левая половина, печатная стр. 82",
+          "article": "92",
+          "formula": "(2)",
+          "kind": "text"
+        }
+      ],
+      "status": "checked",
+      "notes": ["For user-defined batteries: lets the user enter measured U1, U2 and i (or R)."]
+    }
+  ]
+}
